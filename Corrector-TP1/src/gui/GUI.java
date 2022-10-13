@@ -10,7 +10,7 @@ import java.awt.event.MouseListener;
 import java.util.Locale;
 import java.util.Objects;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements ActionListener{
 
     private JTextArea textArea;
     private JLabel label;
@@ -44,3 +44,5 @@ public class GUI extends JFrame {
         pack();
     }
 }
+
+

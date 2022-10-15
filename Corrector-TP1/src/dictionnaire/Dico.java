@@ -36,4 +36,15 @@ public class Dico {
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split("\n")));
         return (ArrayList) l2;
     }
+
+    //Implement Levenshtein distance algo
+    public int levenshteinDistance(String mot1, String mot2){
+        
+
+
+        return dist;
+    }
+
+
+    //Create an array that takes a string (which will be a word in the text)
 }

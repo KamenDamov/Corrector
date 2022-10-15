@@ -34,7 +34,10 @@ public class Dico {
     public <ArrayList> ArrayList dicoGood(String str){
         String s = mots(path_file);
 
-        ArrayList myList = new ArrayList(Arrays.asList(s.split(" ")));
+        ArrayList<String> myList = new ArrayList<String>(){
+
+        };
+        return myList;
     }
 
 }

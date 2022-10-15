@@ -58,6 +58,7 @@ public class GUI extends JFrame {
         StringWriter log = null;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
+            System.out.println("Import");
         } else {
             System.out.println("NO GOOOOOD");
         }

@@ -3,9 +3,12 @@ package dictionnaire;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Arrays;
 
 public class Dico {
-    String path_file;
+    private String path_file;
+    private ArrayList myLis
+
     public Dico(String path_file){
         this.path_file = path_file;
     }
@@ -27,5 +30,11 @@ public class Dico {
         return str;
     }
     //Create an arraylist from the string above
+    //String to arraylist split at \n
+    public <ArrayList> ArrayList dicoGood(String str){
+        String s = mots(path_file);
+
+        ArrayList myList = new ArrayList(Arrays.asList(s.split(" ")));
+    }
 
 }

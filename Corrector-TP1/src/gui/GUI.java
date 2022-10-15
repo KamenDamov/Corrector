@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -48,21 +49,34 @@ public class GUI extends JFrame {
         setVisible(true);
 
         file.addActionListener(e -> {
-            selectFile();
+            try {
+                selectFile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         });
 
         pack();
     }
     //Add text in textarea
-    public void selectFile() {
+    public void selectFile() throws IOException {
         JFileChooser chooser = new JFileChooser();
         // optionally set chooser options ...
         StringWriter log = null;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
             //Convert file to string
-            System.out.println(f.getAbsolutePath());
-            //textArea.append(f);
+
+            Path fileName
+                    = Path.of(f.getAbsolutePath());
+
+            // Now calling Files.readString() method to
+            // read the file
+            String str = Files.readString(fileName);
+
+            // Printing the string
+            System.out.println(str);
+            textArea.append(str);
         } else {
             System.out.println("NO GOOOOOD");
         }

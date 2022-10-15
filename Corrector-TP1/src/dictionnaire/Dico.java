@@ -26,6 +26,6 @@ public class Dico {
         // Printing the string
         return str;
     }
-
+    //Create an arraylist from the string above
 
 }

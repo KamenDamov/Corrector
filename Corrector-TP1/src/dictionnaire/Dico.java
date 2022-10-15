@@ -33,7 +33,7 @@ public class Dico {
     //String to arraylist split at \n
     public <ArrayList> ArrayList dicoGood(){
         String s = mots(path_file);
-        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
+        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split("\n")));
         return (ArrayList) l2;
     }
 }

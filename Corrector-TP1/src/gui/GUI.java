@@ -9,6 +9,8 @@ import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.StringWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -58,11 +60,14 @@ public class GUI extends JFrame {
         StringWriter log = null;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
-            System.out.println("Import");
+            //Convert file to string
+            System.out.println(f.getAbsolutePath());
+            //textArea.append(f);
         } else {
             System.out.println("NO GOOOOOD");
         }
     }
+
 }
 
 

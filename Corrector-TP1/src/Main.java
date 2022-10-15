@@ -7,7 +7,7 @@ public class Main {
         //Declaring GUI
         gui.GUI g = new gui.GUI();
         dictionnaire.Dico d = new dictionnaire.Dico("./dict.txt");
-        System.out.println(dictionnaire.Dico.mots("./dict.txt"));
+        System.out.println((String) d.dicoGood());
     }
     //TODO
     //1) Implement levenshtein algo

@@ -8,6 +8,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.StringWriter;
 import java.util.Locale;
 import java.util.Objects;
 
@@ -50,15 +51,15 @@ public class GUI extends JFrame {
 
         pack();
     }
-
+    //Add text in textarea
     public void selectFile() {
         JFileChooser chooser = new JFileChooser();
         // optionally set chooser options ...
+        StringWriter log = null;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File f = chooser.getSelectedFile();
-            // read  and/or display the file somehow. ....
         } else {
-            // user changed their mind
+            System.out.println("NO GOOOOOD");
         }
     }
 }

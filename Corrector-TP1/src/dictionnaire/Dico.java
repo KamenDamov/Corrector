@@ -39,7 +39,7 @@ public class Dico {
 
     //Implement Levenshtein distance algo
     public int levenshteinDistance(String mot1, String mot2){
-        
+
 
 
         return dist;

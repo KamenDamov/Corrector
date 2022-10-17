@@ -2,7 +2,10 @@ package dictionnaire;
 
 import gui.GUI;
 
+import javax.swing.*;
+import java.io.File;
 import java.io.IOException;
+import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -11,9 +14,10 @@ import java.util.List;
 
 public class Dico extends GUI {
     private String path_file;
-    public Dico(String path_file){
+    public Dico(){
         this.path_file = path_file;
     }
+
     //Dictionnaires
     public static String mots(String path_file){
         Path fileName
@@ -33,8 +37,8 @@ public class Dico extends GUI {
     }
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public <ArrayList> ArrayList dicoGood(){
-        String s = mots(path_file);
+    public <ArrayList> ArrayList dicoGood() throws IOException {
+        String s = selectFile();
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split("\n")));
         return (ArrayList) l2;
     }

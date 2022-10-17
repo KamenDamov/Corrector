@@ -8,9 +8,9 @@ public class Main {
     public static <TextAreaHighlight> void main(String[] args) {
         //Declaring GUI
         gui.GUI g = new gui.GUI();
-        dictionnaire.Dico d = new dictionnaire.Dico("./dict.txt");
+        //dictionnaire.Dico d = new dictionnaire.Dico("./dict.txt");
         //System.out.println((ArrayList<String>) d.dicoGood());
-        System.out.println(d.compute_Levenshtein_distanceDP("Kamen", "Komen"));
+        //System.out.println(d.compute_Levenshtein_distanceDP("Kamen", "Komen"));
 
         /*
         gui.TextAreaTest frame = new TextAreaTest();

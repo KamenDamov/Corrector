@@ -69,10 +69,11 @@ public class GUI extends JFrame {
 
         pack();
     }
-    
+
     //Add text in textarea
     public void selectFile() throws IOException {
         JFileChooser chooser = new JFileChooser();
+
         // optionally set chooser options ...
         StringWriter log = null;
         if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -96,8 +97,5 @@ public class GUI extends JFrame {
 
 }
 
-public class GUIFiles extends GUI{
-
-}
 
 

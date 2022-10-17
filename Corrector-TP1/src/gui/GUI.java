@@ -49,7 +49,7 @@ public class GUI extends JFrame {
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //getContentPane().setLayout(new GridLayout(3, 3));
+        getContentPane().setLayout(new GridLayout(3, 3));
         setVisible(true);
 
         file.addActionListener(e -> {
@@ -63,12 +63,14 @@ public class GUI extends JFrame {
         text.addActionListener(e -> {
             try {
                 selectFile();
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
 
         pack();
+
     }
 
     //Add text in textarea
@@ -90,6 +92,16 @@ public class GUI extends JFrame {
 
             // Printing the string
             System.out.println(str);
+
+            textArea = new JTextArea(30, 30);
+            JPanel north = new JPanel(new FlowLayout());
+            add(north, BorderLayout.NORTH);
+            north.add(textArea);
+            setLocationRelativeTo(null);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            getContentPane().setLayout(new GridLayout(3, 3));
+            setVisible(true);
+            pack();
             textArea.append(str);
         } else {
             System.out.println("NO GOOOOOD");

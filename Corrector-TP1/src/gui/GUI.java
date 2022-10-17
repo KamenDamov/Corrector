@@ -24,6 +24,7 @@ public class GUI extends JFrame {
     private JButton file;
     private JButton verify;
     private JButton text;
+    private JButton chooseText;
 
     public GUI() {
         textArea = new JTextArea(30, 30);
@@ -68,6 +69,7 @@ public class GUI extends JFrame {
 
         pack();
     }
+    
     //Add text in textarea
     public void selectFile() throws IOException {
         JFileChooser chooser = new JFileChooser();
@@ -91,6 +93,10 @@ public class GUI extends JFrame {
             System.out.println("NO GOOOOOD");
         }
     }
+
+}
+
+public class GUIFiles extends GUI{
 
 }
 

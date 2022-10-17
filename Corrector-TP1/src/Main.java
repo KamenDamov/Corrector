@@ -12,7 +12,7 @@ public class Main {
         System.out.println(d.compute_Levenshtein_distanceDP("Kamen", "Komen"));
     }
     //TODO
-    //1) Implement levenshtein algo
-    //2) Update method
-    //3) Verify button
+    // Add elements in grid frame
+    // Responsiveness of buttons
+    // Save files
 }

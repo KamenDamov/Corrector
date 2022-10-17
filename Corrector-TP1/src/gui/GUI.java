@@ -49,6 +49,7 @@ public class GUI extends JFrame {
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        //getContentPane().setLayout(new GridLayout(3, 3));
         setVisible(true);
 
         file.addActionListener(e -> {

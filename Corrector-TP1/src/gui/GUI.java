@@ -22,26 +22,28 @@ public class GUI extends JFrame {
     //Declare GUI frame
     private JLabel prop;
     private JButton file;
+    private JButton verify;
+    private JButton text;
 
     public GUI() {
         textArea = new JTextArea(30, 30);
         label = new JLabel("Corrector");
         prop = new JLabel("Proposed words");
-        file = new JButton("Import");
+        text = new JButton("Import Text");
+        file = new JButton("Import Dictionnary");
+        verify = new JButton("Verify");
 
         JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
-        JPanel east = new JPanel(new FlowLayout());
         JPanel south = new JPanel(new FlowLayout());
 
-        north.add(label);
-        center.add(textArea);
-        east.add(prop);
-        south.add(file);
+        north.add(text);
+        center.add(file);
+        south.add(verify);
 
         add(north, BorderLayout.NORTH);
         add(center, BorderLayout.CENTER);
-        add(east, BorderLayout.EAST);
+        //add(east, BorderLayout.EAST);
         add(south, BorderLayout.SOUTH);
 
         setLocationRelativeTo(null);
@@ -49,6 +51,14 @@ public class GUI extends JFrame {
         setVisible(true);
 
         file.addActionListener(e -> {
+            try {
+                selectFile();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        text.addActionListener(e -> {
             try {
                 selectFile();
             } catch (IOException ex) {

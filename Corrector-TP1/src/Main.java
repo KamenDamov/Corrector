@@ -8,8 +8,8 @@ public class Main {
         //Declaring GUI
         gui.GUI g = new gui.GUI();
         dictionnaire.Dico d = new dictionnaire.Dico("./dict.txt");
-        System.out.println((ArrayList<String>) d.dicoGood());
-        System.out.println(dictionnaire.Dico.compute_Levenshtein_distanceDP("Kamen", "Komen"));
+        //System.out.println((ArrayList<String>) d.dicoGood());
+        System.out.println(d.compute_Levenshtein_distanceDP("Kamen", "Komen"));
     }
     //TODO
     //1) Implement levenshtein algo

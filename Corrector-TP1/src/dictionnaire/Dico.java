@@ -1,5 +1,7 @@
 package dictionnaire;
 
+import gui.GUI;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Dico {
+public class Dico extends GUI {
     private String path_file;
     public Dico(String path_file){
         this.path_file = path_file;

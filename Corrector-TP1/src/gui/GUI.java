@@ -74,7 +74,7 @@ public class GUI extends JFrame {
     }
 
     //Add text in textarea
-    public void selectFile() throws IOException {
+    public String selectFile() throws IOException {
         JFileChooser chooser = new JFileChooser();
 
         // optionally set chooser options ...
@@ -92,7 +92,8 @@ public class GUI extends JFrame {
 
             // Printing the string
             System.out.println(str);
-
+            return str;
+            /*
             textArea = new JTextArea(30, 30);
             JPanel north = new JPanel(new FlowLayout());
             add(north, BorderLayout.NORTH);
@@ -102,10 +103,11 @@ public class GUI extends JFrame {
             getContentPane().setLayout(new GridLayout(3, 3));
             setVisible(true);
             pack();
-            textArea.append(str);
+            textArea.append(str);*/
         } else {
             System.out.println("NO GOOOOOD");
         }
+        return null;
     }
 
 }

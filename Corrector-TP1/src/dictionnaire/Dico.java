@@ -13,33 +13,19 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
-    private String path_file;
+    private String content;
     public Dico(){
-        this.path_file = path_file;
+        super();
     }
 
     //Dictionnaires
-    public static String mots(String path_file){
-        Path fileName
-                = Path.of(path_file);
-
-        // Now calling Files.readString() method to
-        // read the file
-        String str = null;
-        try {
-            str = Files.readString(fileName);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Printing the string
-        return str;
-    }
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public <ArrayList> ArrayList dicoGood() throws IOException {
-        String s = selectFile();
+    public <ArrayList> ArrayList dicoGood(String content) throws IOException {
+        String s = content;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split("\n")));
+        System.out.println("HELLOO");
+        System.out.println(l2);
         return (ArrayList) l2;
     }
 

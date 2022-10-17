@@ -1,5 +1,6 @@
 package gui;
 
+import dictionnaire.Dico;
 import org.w3c.dom.events.MouseEvent;
 
 import javax.swing.*;
@@ -21,7 +22,7 @@ public class GUI extends JFrame {
     private JLabel label;
     //Declare GUI frame
     private JLabel prop;
-    private JButton file;
+    private JButton dico;
     private JButton verify;
     private JButton text;
     private JButton chooseText;
@@ -31,7 +32,7 @@ public class GUI extends JFrame {
         label = new JLabel("Corrector");
         prop = new JLabel("Proposed words");
         text = new JButton("Import Text");
-        file = new JButton("Import Dictionnary");
+        dico = new JButton("Import Dictionnary");
         verify = new JButton("Verify");
 
         JPanel north = new JPanel(new FlowLayout());
@@ -39,7 +40,7 @@ public class GUI extends JFrame {
         JPanel south = new JPanel(new FlowLayout());
 
         north.add(text);
-        center.add(file);
+        center.add(dico);
         south.add(verify);
 
         add(north, BorderLayout.NORTH);
@@ -52,7 +53,7 @@ public class GUI extends JFrame {
         getContentPane().setLayout(new GridLayout(3, 3));
         setVisible(true);
 
-        file.addActionListener(e -> {
+        text.addActionListener(e -> {
             try {
                 selectFile();
             } catch (IOException ex) {
@@ -60,9 +61,10 @@ public class GUI extends JFrame {
             }
         });
 
-        text.addActionListener(e -> {
+        dico.addActionListener(e -> {
             try {
-                selectFile();
+                Dico d = new Dico();
+                d.dicoGood(selectFile());
 
             } catch (IOException ex) {
                 throw new RuntimeException(ex);

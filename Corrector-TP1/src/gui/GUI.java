@@ -19,7 +19,7 @@ public class GUI extends JFrame {
     private JLabel prop;
     private JButton dico;
     private JButton verify;
-    private JButton text;
+    protected JButton text;
     private JButton chooseText;
 
     public GUI() {
@@ -51,7 +51,7 @@ public class GUI extends JFrame {
 
         text.addActionListener(e -> {
             try {
-                Dico t = new Dico(selectFile());
+                Text t = new Text();
                 t.newInterface(selectFile());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -61,20 +61,21 @@ public class GUI extends JFrame {
         dico.addActionListener(e -> {
             try {
                 Dico d = new Dico(selectFile());
-                d.dicoGood(selectFile());
+                d.dicoGood();
+                d.check();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
+        /*
         verify.addActionListener(e -> {
             try {
-                d.check()
+                d.check();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
+        */
         pack();
 
     }

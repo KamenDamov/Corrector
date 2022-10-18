@@ -9,16 +9,20 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
-    private String text;
 
-    public Dico(String text) {
-        this.text = text;
+    //Idea:
+    //Create a static method to keep dico in this class only
+    //Get text in text area through accessor method in Text class.
+    private static String content;
+
+    public Dico(String content) {
+        this.content = content;
     }
 
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public <ArrayList> ArrayList dicoGood(String content) throws IOException {
+    public static <ArrayList> ArrayList dicoGood() throws IOException {
         String s = content;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLO");
@@ -26,29 +30,11 @@ public class Dico extends GUI {
         return (ArrayList) l2;
     }
 
-    public void newInterface(String t) throws IOException {
-        JPanel north = new JPanel(new FlowLayout());
-        JPanel center = new JPanel(new FlowLayout());
-
-        north.add(label);
-        center.add(textArea);
-
-        add(north, BorderLayout.NORTH);
-        add(center, BorderLayout.CENTER);
-
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridLayout(3, 3));
-        setVisible(true);
-        textArea.append(this.text);
-        pack();
-    }
-
-    public void check(String text) throws IOException {
-        String s = text;
-        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println((String) dicoGood(this.text));
-        System.out.println(s);
+    public void check() throws IOException {
+        //String s = text;
+        //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
+        System.out.println(dicoGood().toString());
+        //System.out.println(s);
     }
     //Implement Levenshtein distance algo
     public int compute_Levenshtein_distanceDP(String str1,

@@ -49,6 +49,12 @@ public class GUI extends JFrame {
         //add(east, BorderLayout.EAST);
         add(south, BorderLayout.SOUTH);
 
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new GridLayout(3, 3));
+        setVisible(true);
+        pack();
+
         text.addActionListener(e -> {
             try {
                 Text t = new Text();
@@ -106,7 +112,7 @@ public class GUI extends JFrame {
         } else {
             System.out.println("NO GOOOOOD");
         }
-        return null;
+        return "";
     }
 
 }

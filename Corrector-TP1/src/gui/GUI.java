@@ -69,8 +69,7 @@ public class GUI extends JFrame {
 
         verify.addActionListener(e -> {
             try {
-                Dico d = new Dico(selectFile());
-                d.dicoGood();
+                d.check()
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -24,6 +24,12 @@ public class Dico extends GUI {
         return (ArrayList) l2;
     }
 
+    public void check(String text) throws IOException {
+        String s = text;
+        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
+        System.out.println((String) Dico.dicoGood());
+        System.out.println(s);
+    }
     //Implement Levenshtein distance algo
     public int compute_Levenshtein_distanceDP(String str1,
                                                      String str2)

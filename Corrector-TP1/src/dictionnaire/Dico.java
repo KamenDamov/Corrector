@@ -31,6 +31,10 @@ public class Dico extends GUI {
     }
 
     public void check() throws IOException {
+        //TODO
+        // Add listener to grab text from text area!!!
+
+        
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println(dicoGood().toString());

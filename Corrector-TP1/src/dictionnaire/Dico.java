@@ -4,6 +4,8 @@ import gui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -30,11 +32,13 @@ public class Dico extends GUI {
         return (ArrayList) l2;
     }
 
+
+
     public void check() throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
 
-        
+
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println(dicoGood().toString());

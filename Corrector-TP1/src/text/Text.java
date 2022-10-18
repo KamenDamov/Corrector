@@ -4,9 +4,11 @@ import gui.GUI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.util.EventListener;
 
-public class Text extends GUI {
+public class Text extends GUI implements EventListener {
 
     public void newInterface(String t) throws IOException {
         JPanel north = new JPanel(new FlowLayout());
@@ -26,4 +28,7 @@ public class Text extends GUI {
         pack();
     }
 
+    public static String actionPerformed(MouseEvent e) {
+        return text;
+    }
 }

@@ -10,8 +10,9 @@ import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.EventListener;
 
-public class GUI extends JFrame {
+public class GUI extends JFrame implements EventListener {
 
     protected JTextArea textArea;
     protected JLabel label;
@@ -62,7 +63,6 @@ public class GUI extends JFrame {
             try {
                 Dico d = new Dico(selectFile());
                 d.dicoGood();
-                d.check();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -70,6 +70,7 @@ public class GUI extends JFrame {
         /*
         verify.addActionListener(e -> {
             try {
+                t.actionPerformed();
                 d.check();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);

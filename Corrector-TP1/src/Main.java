@@ -8,7 +8,6 @@ public class Main {
     public static <TextAreaHighlight> void main(String[] args) {
         //Declaring GUI
         gui.GUI g = new gui.GUI();
-
     }
     //TODO
     // Add elements in grid frame

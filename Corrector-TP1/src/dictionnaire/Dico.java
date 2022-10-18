@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
-    private static String content;
+    private String content;
 
     public Dico(String content) {
         this.content = content;
@@ -16,7 +16,7 @@ public class Dico extends GUI {
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public static <ArrayList> ArrayList dicoGood() throws IOException {
+    public <ArrayList> ArrayList dicoGood(String content) throws IOException {
         String s = content;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLO");
@@ -27,7 +27,7 @@ public class Dico extends GUI {
     public void check(String text) throws IOException {
         String s = text;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println((String) Dico.dicoGood());
+        System.out.println((String) dicoGood(content));
         System.out.println(s);
     }
     //Implement Levenshtein distance algo

@@ -61,20 +61,20 @@ public class GUI extends JFrame {
         dico.addActionListener(e -> {
             try {
                 Dico d = new Dico(selectFile());
-                Dico.dicoGood();
+                d.dicoGood(selectFile());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
+        /*
         verify.addActionListener(e -> {
             try {
-                d.check()
+
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
+        */
         pack();
 
     }

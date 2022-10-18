@@ -1,21 +1,15 @@
 package gui;
 
 import dictionnaire.Dico;
-import org.w3c.dom.events.MouseEvent;
 import text.Text;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Locale;
-import java.util.Objects;
 
 public class GUI extends JFrame {
 
@@ -66,8 +60,17 @@ public class GUI extends JFrame {
 
         dico.addActionListener(e -> {
             try {
-                Dico d = new Dico();
-                d.dicoGood(selectFile());
+                Dico d = new Dico(selectFile());
+                Dico.dicoGood();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        verify.addActionListener(e -> {
+            try {
+                Dico d = new Dico(selectFile());
+                d.dicoGood();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -96,7 +99,7 @@ public class GUI extends JFrame {
             String str = Files.readString(fileName);
 
             // Printing the string
-            System.out.println(str);
+            //System.out.println(str);
             return str;
             /*
             textArea = new JTextArea(30, 30);

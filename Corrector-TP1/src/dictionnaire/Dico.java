@@ -2,30 +2,25 @@ package dictionnaire;
 
 import gui.GUI;
 
-import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
-import java.io.StringWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
-    private String content;
-    public Dico(){
-        super();
+    private static String content;
+
+    public Dico(String content) {
+        this.content = content;
     }
 
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public <ArrayList> ArrayList dicoGood(String content) throws IOException {
+    public static <ArrayList> ArrayList dicoGood() throws IOException {
         String s = content;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println("HELLOO");
-        System.out.println(l2);
+        System.out.println("HELLO");
+        System.out.println(l2.toString());
         return (ArrayList) l2;
     }
 

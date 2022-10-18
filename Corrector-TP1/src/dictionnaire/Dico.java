@@ -23,7 +23,7 @@ public class Dico extends GUI {
     //String to arraylist split at \n
     public <ArrayList> ArrayList dicoGood(String content) throws IOException {
         String s = content;
-        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split("\n")));
+        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLOO");
         System.out.println(l2);
         return (ArrayList) l2;

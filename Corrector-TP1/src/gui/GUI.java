@@ -2,6 +2,7 @@ package gui;
 
 import dictionnaire.Dico;
 import org.w3c.dom.events.MouseEvent;
+import text.Text;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,8 +19,8 @@ import java.util.Objects;
 
 public class GUI extends JFrame {
 
-    private JTextArea textArea;
-    private JLabel label;
+    protected JTextArea textArea;
+    protected JLabel label;
     //Declare GUI frame
     private JLabel prop;
     private JButton dico;
@@ -48,14 +49,10 @@ public class GUI extends JFrame {
         //add(east, BorderLayout.EAST);
         add(south, BorderLayout.SOUTH);
 
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridLayout(3, 3));
-        setVisible(true);
-
         text.addActionListener(e -> {
             try {
-                selectFile();
+                Text t = new Text();
+                t.newInterface(selectFile());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -65,7 +62,6 @@ public class GUI extends JFrame {
             try {
                 Dico d = new Dico();
                 d.dicoGood(selectFile());
-
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -74,6 +70,7 @@ public class GUI extends JFrame {
         pack();
 
     }
+
 
     //Add text in textarea
     public String selectFile() throws IOException {

@@ -51,7 +51,7 @@ public class GUI extends JFrame {
 
         text.addActionListener(e -> {
             try {
-                Text t = new Text();
+                Dico t = new Dico(selectFile());
                 t.newInterface(selectFile());
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
@@ -66,15 +66,15 @@ public class GUI extends JFrame {
                 throw new RuntimeException(ex);
             }
         });
-        /*
+
         verify.addActionListener(e -> {
             try {
-
+                d.check()
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        */
+
         pack();
 
     }

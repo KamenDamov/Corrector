@@ -16,7 +16,7 @@ public class Dico extends GUI {
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
-    private static String content;
+    protected static String content;
 
     public Dico(String content) {
         this.content = content;

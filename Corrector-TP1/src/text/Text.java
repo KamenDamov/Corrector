@@ -11,14 +11,17 @@ import java.util.EventListener;
 
 public class Text extends Dico implements EventListener {
 
-    private static String content;
-
+    private static String text;
+    public Text(String text){
+        super(content);
+        this.text = text;
+    }
     public Text() {
         super(content);
     }
 
-    public void newInterface(String t) throws IOException {
-        textArea.append(content);
+    public void newInterface(String text) throws IOException {
+        textArea.append(text);
         /*JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
 

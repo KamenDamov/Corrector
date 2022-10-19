@@ -3,18 +3,19 @@ package dictionnaire;
 import gui.GUI;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
-    public static String content;
+    public static ArrayList<String> content;
 
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
     //public static String content;
 
-    public Dico(String content) {
+    public Dico(ArrayList<String> content) {
         this.content = content;
     }
 
@@ -22,27 +23,27 @@ public class Dico extends GUI {
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public static String grabDico(String content){
+    public ArrayList<String> grabDico(ArrayList<String> content){
         //System.out.println("Hello, I grabbed the dictionnary");
-        //System.out.println(content);
+        System.out.println(content.toString());
         return content;
     }
 
     //Stocker dictionnaire
-    public static <ArrayList> ArrayList dicoGood() throws IOException {
-        //System.out.println("Hello, I am the dictionary structure");
-        String s = grabDico(content);
-        List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
+    public <ArrayList> ArrayList dicoGood() throws IOException {
+        System.out.println("Hello, I am the dictionary structure");
+        java.util.ArrayList<String> s = grabDico(content);
+        //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         //System.out.println("HELLO");
         //System.out.println(l2.toString());
-        return (ArrayList) l2;
+        return (ArrayList) s;
     }
 
     public void check(String content) throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
         //System.out.println(dicoGood().toString());
-        System.out.println(textArea.getText());
+        //System.out.println(textArea.getText());
         System.out.println("Hello, I'm the check function");
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));

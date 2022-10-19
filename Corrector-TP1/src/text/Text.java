@@ -16,7 +16,7 @@ public class Text extends Dico implements EventListener {
     }
 
     public void newInterface(String text) throws IOException {
-        textArea.append(text);
+        //textArea.append(text);
         /*JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
 
@@ -36,6 +36,6 @@ public class Text extends Dico implements EventListener {
 
     public void actionPerformed(MouseEvent e) throws IOException {
         FileWriter logg = new FileWriter("logsheet.txt",true);
-        textArea.write(logg);
+        //textArea.write(logg);
     }
 }

@@ -2,8 +2,6 @@ package text;
 
 import dictionnaire.Dico;
 
-import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -13,11 +11,9 @@ public class Text extends Dico implements EventListener {
 
     private static String text;
     public Text(String text){
-        super(content);
+        super();
+
         this.text = text;
-    }
-    public Text() {
-        super(content);
     }
 
     public void newInterface(String text) throws IOException {

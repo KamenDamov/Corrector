@@ -1,12 +1,7 @@
 package dictionnaire;
 
 import gui.GUI;
-import text.Text;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -16,28 +11,33 @@ public class Dico extends GUI {
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
-    protected static String content;
+    protected String content;
 
     public Dico(String content) {
         this.content = content;
     }
 
+    public Dico() {
+
+    }
+
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public static String grabDico(String content){
+    public String grabDico(String content){
         System.out.println(content);
         return content;
     }
 
-    public static <ArrayList> ArrayList dicoGood() throws IOException {
+    //Stocker dictionnaire
+    public <ArrayList> ArrayList dicoGood() throws IOException {
         String s = grabDico(content);
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLO");
         System.out.println(l2.toString());
         return (ArrayList) l2;
     }
-
+    /*
     public static void check() throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
@@ -47,7 +47,8 @@ public class Dico extends GUI {
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println(dicoGood().toString());
         //System.out.println(s);
-    }
+    }*/
+
     //Implement Levenshtein distance algo
     public int compute_Levenshtein_distanceDP(String str1,
                                                      String str2)

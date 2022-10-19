@@ -56,8 +56,8 @@ public class GUI extends JFrame implements EventListener {
 
         text.addActionListener(e -> {
             try {
-                Text t = new Text();
-                t.newInterface(selectFile());
+                Text t = new Text(selectFile());
+                t.newInterface(String.valueOf(this));
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -65,13 +65,14 @@ public class GUI extends JFrame implements EventListener {
 
         dico.addActionListener(e -> {
             try {
-                Dico.grabDico(selectFile());
-                //d.dicoGood();
+                Dico d = new Dico(selectFile());
+                d.grabDico(String.valueOf(this));
+                d.dicoGood();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-
+/*
         verify.addActionListener(e -> {
             try {
                 Dico.check();
@@ -79,7 +80,7 @@ public class GUI extends JFrame implements EventListener {
                 throw new RuntimeException(ex);
             }
         });
-
+*/
         pack();
 
     }

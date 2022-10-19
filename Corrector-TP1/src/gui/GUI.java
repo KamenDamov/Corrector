@@ -23,10 +23,10 @@ public class GUI extends JFrame implements EventListener {
     protected JButton text;
     private JButton chooseText;
 
+
     public GUI() {
         textArea = new JTextArea(300, 300);
         label = new JLabel("Corrector");
-        //prop = new JLabel("Proposed words");
         text = new JButton("Import Text");
         dico = new JButton("Import Dictionnary");
         verify = new JButton("Verify");
@@ -80,9 +80,6 @@ public class GUI extends JFrame implements EventListener {
                 throw new RuntimeException(ex);
             }
         });
-
-
-
 
         pack();
 

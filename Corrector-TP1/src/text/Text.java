@@ -11,8 +11,7 @@ public class Text extends Dico implements EventListener {
 
     public static String text;
     public Text(String text){
-        super();
-
+        super(content);
         this.text = text;
     }
 

@@ -7,19 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Dico extends GUI {
+    public static String content;
 
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
-    public static String content;
+    //public static String content;
 
     public Dico(String content) {
         this.content = content;
     }
 
-    public Dico() {
-
-    }
 
     //Dictionnaires
     //Create an arraylist from the string above

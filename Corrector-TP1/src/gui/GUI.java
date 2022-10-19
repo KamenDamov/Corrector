@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.List;
 
@@ -12,6 +13,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     private JFileChooser fc;
     protected ArrayList<String> texte;
+    protected ArrayList<String> textArea;
     private JTextArea ta;
     private JButton chooser;
     private JButton dictionnaire;
@@ -97,7 +99,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     }
 
     //Structure interne de notre dico
-    public ArrayList<String> grabDico(ArrayList<String> chargerFichier) {
+
+    public ArrayList<String> vectorize(ArrayList<String> chargerFichier) {
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < chargerFichier.size(); i++) {
             strBuilder.append(chargerFichier.get(i));
@@ -118,12 +121,13 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            this.chargerFichier();
-            this.afficher();
+            textArea = this.vectorize(chargerFichier());
+            System.out.println(textArea);
+
         }
 
         if (e.getSource() == this.dictionnaire) {
-            texte = this.grabDico(chargerFichier());
+            texte = this.vectorize(chargerFichier());
             System.out.println(texte);
         }
 

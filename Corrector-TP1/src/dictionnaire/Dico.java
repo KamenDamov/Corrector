@@ -5,6 +5,7 @@ import gui.GUI;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Dico extends GUI {
 
@@ -17,32 +18,37 @@ public class Dico extends GUI {
         super();
     }
 
+    //Notre dictionnaire
+    public ArrayList<String> grabDico(ArrayList<String> chargerFichier) {
+        StringBuilder strBuilder = new StringBuilder();
+        for (int i = 0; i < chargerFichier.size(); i++) {
+            strBuilder.append(chargerFichier.get(i));
+        }
+        String str = strBuilder.toString();
+        String clean = str.replaceAll("\\p{P}", "").toLowerCase();
+        List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
+        //System.out.println(cleaned.toString());
+        for (int i = 0; i < texte.size(); i++) {
+            //System.out.println(cleaned.get(i));
+            if (texte.get(i) == "\n" || texte.get(i).isEmpty()) {
+                texte.remove(i);
+            }
+        }
+        //System.out.println(cleaned);
+        return (ArrayList) texte;
+    }
+    /*
+    public ArrayList<String> grabText(ArrayList<String> ta){
+
+    }
+    */
+     */
     public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
-        System.out.println(texte);
+        System.out.println(this.grabDico(texte));
         return super.texte;
     }
 
-
-    //Dictionnaires
-    //Create an arraylist from the string above
-    //String to arraylist split at \n
-    public ArrayList<String> grabDico(ArrayList<String> content){
-        //System.out.println("Hello, I grabbed the dictionnary");
-        System.out.println(content.toString());
-        return content;
-    }
-
     //Stocker dictionnaire
-    /*
-    public <ArrayList> ArrayList dicoGood() throws IOException {
-        System.out.println("Hello, I am the dictionary structure");
-        //java.util.ArrayList<String> s = grabDico(content);
-        //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        //System.out.println("HELLO");
-        //System.out.println(l2.toString());
-        return (ArrayList) s;
-    }*/
-
     public void check(String content) throws IOException {
         //TODO
         // Add listener to grab text from text area!!!

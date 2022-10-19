@@ -5,18 +5,21 @@ import gui.GUI;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Dico extends GUI {
-    public static ArrayList<String> content;
 
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
     //public static String content;
 
-    public Dico(ArrayList<String> content) {
-        this.content = content;
+    public Dico() {
+        super();
+    }
+
+    public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
+        System.out.println(texte);
+        return super.texte;
     }
 
 
@@ -30,14 +33,15 @@ public class Dico extends GUI {
     }
 
     //Stocker dictionnaire
+    /*
     public <ArrayList> ArrayList dicoGood() throws IOException {
         System.out.println("Hello, I am the dictionary structure");
-        java.util.ArrayList<String> s = grabDico(content);
+        //java.util.ArrayList<String> s = grabDico(content);
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         //System.out.println("HELLO");
         //System.out.println(l2.toString());
         return (ArrayList) s;
-    }
+    }*/
 
     public void check(String content) throws IOException {
         //TODO

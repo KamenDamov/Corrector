@@ -5,16 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EventListener;
-import java.util.Iterator;
+import java.util.*;
 import java.util.List;
 
 public class GUI extends JFrame implements EventListener, ActionListener {
 
     private JFileChooser fc;
-    private ArrayList<String> texte;
+    protected ArrayList<String> texte;
     private JTextArea ta;
     private JButton chooser;
     private JButton dictionnaire;
@@ -42,6 +39,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
         this.verif.addActionListener(this);
+
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(3, 3));
@@ -106,9 +104,16 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
         String str = strBuilder.toString();
         String clean = str.replaceAll("\\p{P}", "").toLowerCase();
-        List<String> cleaned = new ArrayList<String>(Arrays.asList(clean.split(" ")));
-        System.out.println(cleaned.toString());
-        return chargerFichier;
+        List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
+        //System.out.println(cleaned.toString());
+        for (int i = 0; i < texte.size(); i++) {
+            //System.out.println(cleaned.get(i));
+            if (texte.get(i) == null || texte.get(i).isEmpty()) {
+                texte.remove(i);
+            }
+        }
+        //System.out.println(cleaned);
+        return (ArrayList) texte;
     }
 
     public void actionPerformed(ActionEvent e) {
@@ -118,7 +123,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
 
         if (e.getSource() == this.dictionnaire) {
-            this.grabDico(chargerFichier());
+            texte = this.grabDico(chargerFichier());
+            System.out.println(texte);
         }
 
         if (e.getSource() == this.ecrire) {

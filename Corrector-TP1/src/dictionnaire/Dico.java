@@ -1,6 +1,7 @@
 package dictionnaire;
 
 import gui.GUI;
+import text.Text;
 
 import javax.swing.*;
 import java.awt.*;

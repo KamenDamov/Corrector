@@ -24,13 +24,16 @@ public class GUI extends JFrame implements EventListener {
     private JButton chooseText;
 
     public GUI() {
-        textArea = new JTextArea(30, 30);
+        textArea = new JTextArea(300, 300);
         label = new JLabel("Corrector");
-        prop = new JLabel("Proposed words");
+        //prop = new JLabel("Proposed words");
         text = new JButton("Import Text");
         dico = new JButton("Import Dictionnary");
         verify = new JButton("Verify");
-
+        add(text);
+        add(dico);
+        add(verify);
+        /*
         JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
         JPanel south = new JPanel(new FlowLayout());
@@ -43,7 +46,7 @@ public class GUI extends JFrame implements EventListener {
         add(center, BorderLayout.CENTER);
         //add(east, BorderLayout.EAST);
         add(south, BorderLayout.SOUTH);
-
+        */
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(3, 3));

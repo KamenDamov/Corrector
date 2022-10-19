@@ -1,14 +1,19 @@
 package text;
 
-import gui.GUI;
+import dictionnaire.Dico;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.EventListener;
 
-public class Text extends GUI implements EventListener {
+public class Text extends Dico implements EventListener {
+
+    public Text() {
+        super(content);
+    }
 
     public void newInterface(String t) throws IOException {
         JPanel north = new JPanel(new FlowLayout());
@@ -28,7 +33,8 @@ public class Text extends GUI implements EventListener {
         pack();
     }
 
-    public static String actionPerformed(MouseEvent e) {
-        return text;
+    public void actionPerformed(MouseEvent e) throws IOException {
+        FileWriter logg = new FileWriter("logsheet.txt",true);
+        textArea.write(logg);
     }
 }

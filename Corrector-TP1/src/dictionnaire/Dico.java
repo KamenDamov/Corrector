@@ -25,15 +25,18 @@ public class Dico extends GUI {
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public static <ArrayList> ArrayList dicoGood(String content) throws IOException {
-        String s = content;
+    public static String grabDico(String content){
+        System.out.println(content);
+        return content;
+    }
+
+    public static <ArrayList> ArrayList dicoGood() throws IOException {
+        String s = grabDico(content);
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLO");
         System.out.println(l2.toString());
         return (ArrayList) l2;
     }
-
-
 
     public static void check() throws IOException {
         //TODO
@@ -42,7 +45,7 @@ public class Dico extends GUI {
         System.out.println(content);
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println(Dico.dicoGood(content).toString());
+        System.out.println(dicoGood().toString());
         //System.out.println(s);
     }
     //Implement Levenshtein distance algo

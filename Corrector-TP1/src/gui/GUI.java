@@ -25,7 +25,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         JPanel bas = new JPanel();
         this.add(haut, "North");
         this.add(bas, "Center");
-        this.ta = new JTextArea("textarea", 300, 300);
+        this.ta = new JTextArea("textarea", 300, 30);
         bas.add(this.ta);
         this.chooser = new JButton("choisir");
         haut.add(this.chooser);

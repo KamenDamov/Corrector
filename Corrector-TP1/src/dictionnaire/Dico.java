@@ -37,11 +37,12 @@ public class Dico extends GUI {
         //System.out.println(cleaned);
         return (ArrayList) texte;
     }
-    /*
-    public ArrayList<String> grabText(ArrayList<String> ta){
 
+    public ArrayList<String> grabText(){
+        System.out.println(this.grabDico(textArea));
+        return super.textArea;
     }
-    */
+
 
     public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
         System.out.println(this.grabDico(texte));

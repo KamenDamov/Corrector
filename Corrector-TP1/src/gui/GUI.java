@@ -98,8 +98,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     }
 
-    //Structure interne de notre dico
+    public ArrayList<String> stringArrayList(String s){
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(s.split(" ")));
+        return list;
+    }
 
+    //Structure interne de notre dico
     public ArrayList<String> vectorize(ArrayList<String> chargerFichier) {
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < chargerFichier.size(); i++) {
@@ -121,10 +125,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            textArea = this.vectorize(chargerFichier());
-            System.out.println(textArea);
+            texte = this.vectorize(chargerFichier());
+            System.out.println(texte);
             this.afficher();
-
         }
 
         if (e.getSource() == this.dictionnaire) {
@@ -137,8 +140,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
         if (e.getSource() == this.verif) {
             System.out.println("Verifier");
-
-            //this.check();
+            texte = this.vectorize(stringArrayList(ta.getText()));
+            System.out.println(texte);
         }
     }
 

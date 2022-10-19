@@ -38,9 +38,9 @@ public class Dico extends GUI {
         return (ArrayList) texte;
     }
 
-    public ArrayList<String> grabText(){
-        System.out.println(this.grabDico(textArea));
-        return super.textArea;
+    public <ArrayList> java.util.ArrayList<String> grabText(){
+        System.out.println(this.grabDico(texte));
+        return super.texte;
     }
 
 

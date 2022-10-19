@@ -12,6 +12,7 @@ public class Main {
         //gui.GUI g = new gui.GUI();
         dictionnaire.Dico d = new dictionnaire.Dico();
         d.grabDictionnary();
+        d.grabText();
     }
     //TODO
     // Add elements in grid frame

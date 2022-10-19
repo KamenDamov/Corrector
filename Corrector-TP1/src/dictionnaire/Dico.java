@@ -42,7 +42,7 @@ public class Dico extends GUI {
 
     }
     */
-     */
+
     public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
         System.out.println(this.grabDico(texte));
         return super.texte;

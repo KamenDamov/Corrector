@@ -25,7 +25,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         JPanel bas = new JPanel();
         this.add(haut, "North");
         this.add(bas, "Center");
-        this.ta = new JTextArea("textarea", 100, 20);
+        this.ta = new JTextArea("textarea", 300, 300);
         bas.add(this.ta);
         this.chooser = new JButton("choisir");
         haut.add(this.chooser);
@@ -106,7 +106,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             strBuilder.append(chargerFichier.get(i));
         }
         String str = strBuilder.toString();
-        String clean = str.replaceAll("\\p{P}", "").toLowerCase();
+        String clean = str.replaceAll("\\p{P}", " ").toLowerCase();
         List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
         //System.out.println(cleaned.toString());
         for (int i = 0; i < texte.size(); i++) {
@@ -123,6 +123,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         if (e.getSource() == this.chooser) {
             textArea = this.vectorize(chargerFichier());
             System.out.println(textArea);
+            this.afficher();
 
         }
 

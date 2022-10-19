@@ -11,7 +11,7 @@ public class Dico extends GUI {
     //Idea:
     //Create a static method to keep dico in this class only
     //Get text in text area through accessor method in Text class.
-    protected String content;
+    public static String content;
 
     public Dico(String content) {
         this.content = content;
@@ -24,30 +24,33 @@ public class Dico extends GUI {
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public String grabDico(String content){
-        System.out.println(content);
+    public static String grabDico(String content){
+        //System.out.println("Hello, I grabbed the dictionnary");
+        //System.out.println(content);
         return content;
     }
 
     //Stocker dictionnaire
-    public <ArrayList> ArrayList dicoGood() throws IOException {
+    public static <ArrayList> ArrayList dicoGood() throws IOException {
+        //System.out.println("Hello, I am the dictionary structure");
         String s = grabDico(content);
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println("HELLO");
-        System.out.println(l2.toString());
+        //System.out.println("HELLO");
+        //System.out.println(l2.toString());
         return (ArrayList) l2;
     }
-    /*
-    public static void check() throws IOException {
+
+    public void check(String content) throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
-
+        System.out.println(dicoGood().toString());
         System.out.println(content);
+        System.out.println("Hello, I'm the check function");
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println(dicoGood().toString());
+        //System.out.println(dicoGood().toString());
         //System.out.println(s);
-    }*/
+    }
 
     //Implement Levenshtein distance algo
     public int compute_Levenshtein_distanceDP(String str1,

@@ -9,7 +9,7 @@ import java.util.EventListener;
 
 public class Text extends Dico implements EventListener {
 
-    private static String text;
+    public static String text;
     public Text(String text){
         super();
 

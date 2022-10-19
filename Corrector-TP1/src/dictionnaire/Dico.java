@@ -41,8 +41,8 @@ public class Dico extends GUI {
     public void check(String content) throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
-        System.out.println(dicoGood().toString());
-        System.out.println(content);
+        //System.out.println(dicoGood().toString());
+        System.out.println(textArea.getText());
         System.out.println("Hello, I'm the check function");
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));

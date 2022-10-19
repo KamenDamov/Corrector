@@ -35,14 +35,14 @@ public class Dico extends GUI {
 
 
 
-    public void check() throws IOException {
+    public static void check() throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
 
-
+        System.out.println(content);
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println(dicoGood(content).toString());
+        System.out.println(Dico.dicoGood(content).toString());
         //System.out.println(s);
     }
     //Implement Levenshtein distance algo

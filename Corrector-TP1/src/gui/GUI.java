@@ -65,22 +65,21 @@ public class GUI extends JFrame implements EventListener {
 
         dico.addActionListener(e -> {
             try {
-                dictionnaire.Dico.dicoGood(selectFile());
+                Dico.dicoGood(selectFile());
                 //d.dicoGood();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        /*
+
         verify.addActionListener(e -> {
             try {
-                t.actionPerformed();
-                d.check();
+                Dico.check();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        */
+
         pack();
 
     }

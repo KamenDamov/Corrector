@@ -11,12 +11,15 @@ import java.util.EventListener;
 
 public class Text extends Dico implements EventListener {
 
+    private static String content;
+
     public Text() {
         super(content);
     }
 
     public void newInterface(String t) throws IOException {
-        JPanel north = new JPanel(new FlowLayout());
+        textArea.append(content);
+        /*JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
 
         north.add(label);
@@ -30,7 +33,7 @@ public class Text extends Dico implements EventListener {
         getContentPane().setLayout(new GridLayout(3, 3));
         setVisible(true);
         textArea.append(String.valueOf(this.text));
-        pack();
+        pack();*/
     }
 
     public void actionPerformed(MouseEvent e) throws IOException {

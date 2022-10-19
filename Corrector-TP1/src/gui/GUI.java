@@ -33,6 +33,7 @@ public class GUI extends JFrame implements EventListener {
         add(text);
         add(dico);
         add(verify);
+        add(textArea);
         /*
         JPanel north = new JPanel(new FlowLayout());
         JPanel center = new JPanel(new FlowLayout());
@@ -49,7 +50,7 @@ public class GUI extends JFrame implements EventListener {
         */
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new GridLayout(3, 3));
+        getContentPane().setLayout(new GridLayout(3, 3, 20,25));
         setVisible(true);
         pack();
 
@@ -64,8 +65,8 @@ public class GUI extends JFrame implements EventListener {
 
         dico.addActionListener(e -> {
             try {
-                Dico d = new Dico(selectFile());
-                d.dicoGood();
+                dictionnaire.Dico.dicoGood(selectFile());
+                //d.dicoGood();
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }

@@ -25,7 +25,7 @@ public class Dico extends GUI {
     //Dictionnaires
     //Create an arraylist from the string above
     //String to arraylist split at \n
-    public static <ArrayList> ArrayList dicoGood() throws IOException {
+    public static <ArrayList> ArrayList dicoGood(String content) throws IOException {
         String s = content;
         List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
         System.out.println("HELLO");
@@ -42,7 +42,7 @@ public class Dico extends GUI {
 
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        System.out.println(dicoGood().toString());
+        System.out.println(dicoGood(content).toString());
         //System.out.println(s);
     }
     //Implement Levenshtein distance algo

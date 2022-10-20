@@ -13,6 +13,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     private JFileChooser fc;
     protected ArrayList<String> texte;
+    protected ArrayList<String> texteDico;
+    protected ArrayList<String> texteAVerif;
+
     protected ArrayList<String> textArea;
     private JTextArea ta;
     private JButton chooser;
@@ -131,8 +134,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
 
         if (e.getSource() == this.dictionnaire) {
-            texte = this.vectorize(chargerFichier());
-            System.out.println(texte);
+            texteDico = this.vectorize(chargerFichier());
+            System.out.println(texteDico);
         }
 
         if (e.getSource() == this.ecrire) {
@@ -140,8 +143,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
         if (e.getSource() == this.verif) {
             System.out.println("Verifier");
-            texte = this.vectorize(stringArrayList(ta.getText()));
-            System.out.println(texte);
+            texteAVerif = this.vectorize(stringArrayList(ta.getText()));
+            System.out.println(texteAVerif);
         }
     }
 

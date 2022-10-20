@@ -26,7 +26,7 @@ public class Dico extends GUI {
         }
         String str = strBuilder.toString();
         String clean = str.replaceAll("\\p{P}", "").toLowerCase();
-        List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
+        List<String> texte = new ArrayList<>(Arrays.asList(clean.split(" ")));
         //System.out.println(cleaned.toString());
         for (int i = 0; i < texte.size(); i++) {
             //System.out.println(cleaned.get(i));
@@ -39,13 +39,13 @@ public class Dico extends GUI {
     }
 
     public <ArrayList> java.util.ArrayList<String> grabText(){
-        System.out.println(this.grabDico(texte));
+        System.out.println(this.vectorize(texte));
         return super.texte;
     }
 
 
     public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
-        System.out.println(this.grabDico(texte));
+        System.out.println(this.vectorize(texte));
         return super.texte;
     }
 
@@ -55,6 +55,8 @@ public class Dico extends GUI {
         // Add listener to grab text from text area!!!
         //System.out.println(dicoGood().toString());
         //System.out.println(textArea.getText());
+        System.out.println(grabDictionnary());
+        System.out.println(grabText());
         System.out.println("Hello, I'm the check function");
         //String s = text;
         //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));

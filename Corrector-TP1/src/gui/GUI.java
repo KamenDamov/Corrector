@@ -153,15 +153,17 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             }
             System.out.println(seen);
             if (seen == false) {
+                HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
+                System.out.println(toCheck);
                 //Compute levenshtein distance as word was not found
                 for (int k = 0; k < texteDico.size(); k++) {
                     //TODO
                     // Create hashmap have words in dico and their distance with current word
+                    wordLevenDistanceMap.put(texteDico.get(i), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                     System.out.println(compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }
-
+                System.out.println(wordLevenDistanceMap.toString());
             }
-            System.out.println(texteDico);
             System.out.println("Hello, I'm the check function");
             //String s = text;
             //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));

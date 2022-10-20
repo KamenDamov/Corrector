@@ -117,25 +117,26 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 newText.add(i, chargerFichier.get(i).toLowerCase());
             }
             return newText;
-        }
-        StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < chargerFichier.size(); i++) {
-            strBuilder.append(chargerFichier.get(i));
-        }
-        String str = strBuilder.toString();
-        String clean = str.replaceAll("\\p{P}", " ").toLowerCase();
-        List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
-        //System.out.println(cleaned.toString());
-        for (int i = 0; i < texte.size(); i++) {
-            //System.out.println(cleaned.get(i));
-            if (texte.get(i) == null || texte.get(i).isEmpty()) {
-                texte.remove(i);
+        } else {
+            StringBuilder strBuilder = new StringBuilder();
+            for (int i = 0; i < chargerFichier.size(); i++) {
+                strBuilder.append(chargerFichier.get(i));
             }
+            String str = strBuilder.toString();
+            String clean = str.replaceAll("\\p{P}", " ").toLowerCase();
+            List<String> texte = new ArrayList<String>(Arrays.asList(clean.split(" ")));
+            //System.out.println(cleaned.toString());
+            /*
+            for (int i = 0; i < texte.size(); i++) {
+                //System.out.println(cleaned.get(i));
+                if (texte.get(i) == null || texte.get(i).isEmpty()) {
+                    texte.remove(i);
+                }
+            }*/
+            //System.out.println(cleaned);
+            return (ArrayList) texte;
         }
-        //System.out.println(cleaned);
-        return (ArrayList) texte;
     }
-
     public void check() throws IOException {
         //TODO
         // Naive algo: 2 for loops equating to O(n*m) algo
@@ -145,8 +146,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         //Outer hashmap containing words, with its 5 closest contendants
         HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
         for (int i = 0; i < texteAVerif.size(); i++) {
-            boolean seen = false;
             String toCheck = texteAVerif.get(i);
+            boolean seen = false;
             for (int j = 0; j < texteDico.size(); j++) {
                 if (toCheck == texteDico.get(j)) {
                     seen = true;
@@ -166,6 +167,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 // 1) Sort the hashmap words
                 // 2) Keep first 5 elements
                 // 3) Create hashmap
+                System.out.println(wordLevenDistanceMap.size());
                 Map<Integer, String> map=new HashMap<Integer, String>();
                 System.out.println("After Sorting");
 
@@ -186,7 +188,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     System.out.println("Distance:  "+key+"     Word:   "+wordLevenDistanceMap.get(key));
                     n++;
                 }
-                System.out.println(top5Distance.toString());
+                //System.out.println(top5Distance.toString());
                 wordAndDistance.put(toCheck, top5Distance);
             }
             System.out.println(wordAndDistance.toString());

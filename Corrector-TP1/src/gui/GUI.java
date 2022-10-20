@@ -172,16 +172,17 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 Iterator itr=tm.keySet().iterator();
 
                 //Refill the hash map
-                HashMap<Integer, String> top5Distance = new HashMap<Integer, String>();
+                HashMap<String, Integer> top5Distance = new HashMap<String, Integer>();
 
                 //Iterator
                 int n = 0;
                 while(itr.hasNext())
                 {
-                    int key=(int)itr.next();
+                    Integer key=(int)itr.next();
+                    top5Distance.put(wordLevenDistanceMap.get(key), key);
                     System.out.println("Distance:  "+key+"     Word:   "+wordLevenDistanceMap.get(key));
                 }
-                //System.out.println(wordLevenDistanceMap.toString());
+                System.out.println(top5Distance.toString());
             }
             System.out.println("Hello, I'm the check function");
         }

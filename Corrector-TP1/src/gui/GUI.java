@@ -117,7 +117,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 newText.add(i, chargerFichier.get(i).toLowerCase());
             }
             return newText;
-        } else {
+        } else {/*
             StringBuilder strBuilder = new StringBuilder();
             for (int i = 0; i < chargerFichier.size(); i++) {
                 strBuilder.append(chargerFichier.get(i));
@@ -134,7 +134,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 }
             }*/
             //System.out.println(cleaned);
-            return (ArrayList) texte;
+            return (ArrayList) chargerFichier;
         }
     }
     public void check() throws IOException {
@@ -191,7 +191,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 //System.out.println(top5Distance.toString());
                 wordAndDistance.put(toCheck, top5Distance);
             }
-            System.out.println(wordAndDistance.toString());
+            //System.out.println(wordAndDistance.toString());
         }
     }
 
@@ -268,8 +268,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             }
         }
     }
-
-
 }
 
 

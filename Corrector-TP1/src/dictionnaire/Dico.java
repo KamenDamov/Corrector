@@ -50,7 +50,7 @@ public class Dico extends GUI {
     }
 
     //Stocker dictionnaire
-    public void check(String content) throws IOException {
+    public void check() throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
 

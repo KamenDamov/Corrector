@@ -1,5 +1,8 @@
 package gui;
 
+import dictionnaire.Dico;
+import jdk.internal.loader.URLClassPath;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -107,7 +110,14 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     }
 
     //Structure interne de notre dico
-    public ArrayList<String> vectorize(ArrayList<String> chargerFichier) {
+    public ArrayList<String> vectorize(ArrayList<String> chargerFichier, char v) {
+        if (v == 'o') {
+            ArrayList<String> newText = new ArrayList<>();
+            for (int i = 0; i < chargerFichier.size(); i++) {
+                newText.add(i, chargerFichier.get(i).toLowerCase());
+            }
+            return newText;
+        }
         StringBuilder strBuilder = new StringBuilder();
         for (int i = 0; i < chargerFichier.size(); i++) {
             strBuilder.append(chargerFichier.get(i));
@@ -126,25 +136,43 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         return (ArrayList) texte;
     }
 
+    public void check() throws IOException {
+        //TODO
+        // Add listener to grab text from text area!!!
+
+        System.out.println(texteAVerif);
+        System.out.println(texteDico);
+        System.out.println("Hello, I'm the check function");
+        //String s = text;
+        //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
+        //System.out.println(dicoGood().toString());
+        //System.out.println(s);
+    }
+
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            texte = this.vectorize(chargerFichier());
+            texte = this.vectorize(chargerFichier(), 'n');
             //System.out.println(texte);
             this.afficher();
         }
 
         if (e.getSource() == this.dictionnaire) {
-            texteDico = this.vectorize(chargerFichier());
-            System.out.println(texteDico);
+            texteDico = this.vectorize(chargerFichier(), 'n');
+            //System.out.println(texteDico);
         }
 
         if (e.getSource() == this.ecrire) {
             this.ecrireFichier();
         }
         if (e.getSource() == this.verif) {
-            System.out.println("Verifier");
-            texteAVerif = this.vectorize(stringArrayList(ta.getText()));
-            this.check()
+            System.out.println(stringArrayList(ta.getText()));
+            texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
+            //System.out.println(texteAVerif);
+            try {
+                this.check();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
         }
     }
 

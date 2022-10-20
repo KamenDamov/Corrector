@@ -151,7 +151,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     seen = true;
                 }
             }
-            System.out.println(seen);
             if (seen == false) {
                 HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
                 System.out.println(toCheck);
@@ -159,16 +158,11 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 for (int k = 0; k < texteDico.size(); k++) {
                     //TODO
                     // Create hashmap have words in dico and their distance with current word
-                    wordLevenDistanceMap.put(texteDico.get(i), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
-                    System.out.println(compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
+                    wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }
                 System.out.println(wordLevenDistanceMap.toString());
             }
             System.out.println("Hello, I'm the check function");
-            //String s = text;
-            //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-            //System.out.println(dicoGood().toString());
-            //System.out.println(s);
         }
     }
 

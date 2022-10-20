@@ -249,6 +249,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
 
         if (e.getSource() == this.dictionnaire) {
+            System.out.println(chargerFichier());
             texteDico = this.vectorize(chargerFichier(), 'n');
             //System.out.println(texteDico);
         }

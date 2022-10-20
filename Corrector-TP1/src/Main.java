@@ -9,10 +9,10 @@ import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 public class Main {
     public static void main(String[] args) {
         //Declaring GUI
-        //gui.GUI g = new gui.GUI();
-        dictionnaire.Dico d = new dictionnaire.Dico();
-        d.grabDictionnary();
-        d.grabText();
+        gui.GUI g = new gui.GUI();
+        //dictionnaire.Dico d = new dictionnaire.Dico();
+        //System.out.println(d.grabDictionnary());
+        //System.out.println(d.grabText());
     }
     //TODO
     // Add elements in grid frame

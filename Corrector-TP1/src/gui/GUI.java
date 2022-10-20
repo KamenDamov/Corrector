@@ -129,7 +129,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
             texte = this.vectorize(chargerFichier());
-            System.out.println(texte);
+            //System.out.println(texte);
             this.afficher();
         }
 
@@ -144,7 +144,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         if (e.getSource() == this.verif) {
             System.out.println("Verifier");
             texteAVerif = this.vectorize(stringArrayList(ta.getText()));
-            System.out.println(texteAVerif);
+            this.check()
         }
     }
 

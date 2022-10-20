@@ -17,7 +17,7 @@ public class Dico extends GUI {
     public Dico() {
         super();
     }
-
+/*
     //Notre dictionnaire
     public ArrayList<String> grabDico(ArrayList<String> chargerFichier) {
         StringBuilder strBuilder = new StringBuilder();
@@ -37,24 +37,23 @@ public class Dico extends GUI {
         //System.out.println(cleaned);
         return (ArrayList) texte;
     }
-
+*/
     public <ArrayList> java.util.ArrayList<String> grabText(){
-        System.out.println(this.vectorize(texte));
+        System.out.println(texte);
         return super.texte;
     }
 
 
     public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
-        System.out.println(this.vectorize(texte));
-        return super.texte;
+        System.out.println(texteDico);
+        return super.texteDico;
     }
 
     //Stocker dictionnaire
     public void check(String content) throws IOException {
         //TODO
         // Add listener to grab text from text area!!!
-        //System.out.println(dicoGood().toString());
-        //System.out.println(textArea.getText());
+
         System.out.println(grabDictionnary());
         System.out.println(grabText());
         System.out.println("Hello, I'm the check function");

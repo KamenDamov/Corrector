@@ -170,6 +170,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 //using TreeMap constructor to sort the HashMap
                 TreeMap<Integer, String> tm=new  TreeMap<Integer, String>(wordLevenDistanceMap);
                 Iterator itr=tm.keySet().iterator();
+
+                //Refill the hash map
+                HashMap<Integer, String> top5Distance = new HashMap<Integer, String>();
+
+                //Iterator
+                int n = 0;
                 while(itr.hasNext())
                 {
                     int key=(int)itr.next();

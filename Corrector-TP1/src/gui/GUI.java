@@ -138,9 +138,24 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void check() throws IOException {
         //TODO
-        // Add listener to grab text from text area!!!
+        // Naive algo: 2 for loops equating to O(n*m) algo
+        // For words that are not in dico
+        // Add in a hashmap KEY == Word and VAL == Levenshtein Distance
+        // Sort on Val and keep only top 5
 
-        System.out.println(texteAVerif);
+        for (int i = 0; i < texteAVerif.size(); i++) {
+            boolean seen = false;
+            String toCheck = texteAVerif.get(i);
+            for(int j = 0; j < texteDico.size(); j++){
+                if (toCheck != texteDico.get(i)) {
+                    seen = true;
+                }
+            }
+            if (seen = false){
+                //Compute levenshtein distance as word was not found
+            }
+
+        }
         System.out.println(texteDico);
         System.out.println("Hello, I'm the check function");
         //String s = text;

@@ -140,7 +140,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         //TODO
         // Naive algo: 2 for loops equating to O(n*m) algo
         // For words that are not in dico
-        // Add in a hashmap KEY == Word and VAL == Levenshtein Distance
+        // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
         // Sort on Val and keep only top 5
 
         for (int i = 0; i < texteAVerif.size(); i++) {
@@ -155,6 +155,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             if (seen == false) {
                 //Compute levenshtein distance as word was not found
                 for (int k = 0; k < texteDico.size(); k++) {
+                    //TODO
+                    // Create hashmap have words in dico and their distance with current word
                     System.out.println(compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }
 

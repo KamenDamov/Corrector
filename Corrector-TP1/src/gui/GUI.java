@@ -152,15 +152,30 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 }
             }
             if (seen == false) {
-                HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
+                HashMap<Integer, String> wordLevenDistanceMap = new HashMap<Integer, String>();
                 System.out.println(toCheck);
                 //Compute levenshtein distance as word was not found
                 for (int k = 0; k < texteDico.size(); k++) {
                     //TODO
                     // Create hashmap have words in dico and their distance with current word
-                    wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
+                    wordLevenDistanceMap.put(compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)), texteDico.get(k));
                 }
-                System.out.println(wordLevenDistanceMap.toString());
+                //TODO
+                // Create a hashmap to store words and associated top 5 closest words
+                // 1) Sort the hashmap words
+                // 2) Keep first 5 elements
+                // 3) Create hashmap
+                Map<Integer, String> map=new HashMap<Integer, String>();
+                System.out.println("After Sorting");
+//using TreeMap constructor to sort the HashMap
+                TreeMap<Integer, String> tm=new  TreeMap<Integer, String>(wordLevenDistanceMap);
+                Iterator itr=tm.keySet().iterator();
+                while(itr.hasNext())
+                {
+                    int key=(int)itr.next();
+                    System.out.println("Distance:  "+key+"     Word:   "+wordLevenDistanceMap.get(key));
+                }
+                //System.out.println(wordLevenDistanceMap.toString());
             }
             System.out.println("Hello, I'm the check function");
         }

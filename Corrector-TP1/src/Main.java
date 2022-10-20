@@ -11,8 +11,4 @@ public class Main {
         //Declaring GUI
         gui.GUI g = new gui.GUI();
     }
-    //TODO
-    // Add elements in grid frame
-    // Responsiveness of buttons
-    // Save files
 }

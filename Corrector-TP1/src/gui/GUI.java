@@ -142,7 +142,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         // For words that are not in dico
         // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
         // Sort on Val and keep only top 5
-
+        //Outer hashmap containing words, with its 5 closest contendants
+        HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
         for (int i = 0; i < texteAVerif.size(); i++) {
             boolean seen = false;
             String toCheck = texteAVerif.get(i);
@@ -167,24 +168,28 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 // 3) Create hashmap
                 Map<Integer, String> map=new HashMap<Integer, String>();
                 System.out.println("After Sorting");
-//using TreeMap constructor to sort the HashMap
+
+                //using TreeMap constructor to sort the HashMap
                 TreeMap<Integer, String> tm=new  TreeMap<Integer, String>(wordLevenDistanceMap);
                 Iterator itr=tm.keySet().iterator();
 
                 //Refill the hash map
+                //Will be used as inner hashmap
                 HashMap<String, Integer> top5Distance = new HashMap<String, Integer>();
 
-                //Iterator
+                //Iterator to stop at top 5
                 int n = 0;
-                while(itr.hasNext())
+                while(itr.hasNext() && n < 5)
                 {
                     Integer key=(int)itr.next();
                     top5Distance.put(wordLevenDistanceMap.get(key), key);
                     System.out.println("Distance:  "+key+"     Word:   "+wordLevenDistanceMap.get(key));
+                    n++;
                 }
                 System.out.println(top5Distance.toString());
+                wordAndDistance.put(toCheck, top5Distance);
             }
-            System.out.println("Hello, I'm the check function");
+            System.out.println(wordAndDistance.toString());
         }
     }
 

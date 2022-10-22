@@ -146,7 +146,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     }
 
-
     public void afficher() {
         if (this.texte != null) {
             Iterator var1 = this.texte.iterator();

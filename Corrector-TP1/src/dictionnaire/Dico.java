@@ -48,7 +48,7 @@ public class Dico extends GUI {
         System.out.println(texteDico);
         return super.texteDico;
     }
-
+    /*
     //Stocker dictionnaire
     public void check() throws IOException {
         //TODO
@@ -62,7 +62,7 @@ public class Dico extends GUI {
         //System.out.println(dicoGood().toString());
         //System.out.println(s);
     }
-
+*/
     //Implement Levenshtein distance algo
     public int compute_Levenshtein_distanceDP(String str1,
                                                      String str2)

@@ -4,6 +4,7 @@ import dictionnaire.Dico;
 import jdk.internal.loader.URLClassPath;
 
 import javax.swing.*;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     private JButton dictionnaire;
     private JButton ecrire;
     private JButton verif;
+    Highlighter.HighlightPainter myHighlightPainter = new .MyHighlightPainter(Color.red);
+    class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
+        public MyHighlightPainter(Color color) {
+            super(color);
+        }
+    }
 
     public GUI() {
         JPanel haut = new JPanel();
@@ -137,12 +144,38 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             return (ArrayList) chargerFichier;
         }
     }
-    public void check() throws IOException {
+
+    //Sorting the hashmap
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
+        }
+        return temp;
+    }
+
+    public HashMap<String, HashMap> check() throws IOException {
         //TODO
         // Naive algo: 2 for loops equating to O(n*m) algo
         // For words that are not in dico
         // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
         // Sort on Val and keep only top 5
+
         //Outer hashmap containing words, with its 5 closest contendants
         HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
         for (int i = 0; i < texteAVerif.size(); i++) {
@@ -154,44 +187,71 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 }
             }
             if (seen == false) {
-                HashMap<Integer, String> wordLevenDistanceMap = new HashMap<Integer, String>();
+                HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
                 System.out.println(toCheck);
                 //Compute levenshtein distance as word was not found
+                System.out.println(texteDico.size());
                 for (int k = 0; k < texteDico.size(); k++) {
                     //TODO
                     // Create hashmap have words in dico and their distance with current word
-                    wordLevenDistanceMap.put(compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)), texteDico.get(k));
+                    wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }
+
                 //TODO
                 // Create a hashmap to store words and associated top 5 closest words
                 // 1) Sort the hashmap words
                 // 2) Keep first 5 elements
                 // 3) Create hashmap
-                System.out.println(wordLevenDistanceMap.size());
-                Map<Integer, String> map=new HashMap<Integer, String>();
-                System.out.println("After Sorting");
-
-                //using TreeMap constructor to sort the HashMap
-                TreeMap<Integer, String> tm=new  TreeMap<Integer, String>(wordLevenDistanceMap);
-                Iterator itr=tm.keySet().iterator();
-
-                //Refill the hash map
-                //Will be used as inner hashmap
-                HashMap<String, Integer> top5Distance = new HashMap<String, Integer>();
-
-                //Iterator to stop at top 5
+                //System.out.println(wordLevenDistanceMap.toString());
+                //System.out.println(wordLevenDistanceMap.size());
+                Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
+                HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
                 int n = 0;
-                while(itr.hasNext() && n < 5)
-                {
-                    Integer key=(int)itr.next();
-                    top5Distance.put(wordLevenDistanceMap.get(key), key);
-                    System.out.println("Distance:  "+key+"     Word:   "+wordLevenDistanceMap.get(key));
+                for (Map.Entry<String, Integer> en : hm1.entrySet()) {
+                    if (n == 5) {
+                        break;
+                    }
+                    top5Distances.put(en.getKey(), en.getValue());
+                    System.out.println("Key = " + en.getKey() +
+                            ", Value = " + en.getValue());
                     n++;
                 }
-                //System.out.println(top5Distance.toString());
-                wordAndDistance.put(toCheck, top5Distance);
+                wordAndDistance.put(toCheck, top5Distances);
             }
-            //System.out.println(wordAndDistance.toString());
+            System.out.println(wordAndDistance.toString());
+        }
+        return wordAndDistance;
+    }
+
+    public void highlight(String pattern) {
+        // First remove all old highlights
+        removeHighlights(this.ta);
+
+        try {
+            Highlighter hilite = this.ta.getHighlighter();
+            Document doc = this.ta.getDocument();
+            String text = doc.getText(0, doc.getLength());
+            int pos = 0;
+
+            // Search for pattern
+            while ((pos = text.indexOf(pattern, pos)) >= 0) {
+                // Create highlighter using private painter and apply around pattern
+                hilite.addHighlight(pos, pos+pattern.length(), myHighlightPainter);
+                pos += pattern.length();
+            }
+        } catch (BadLocationException e) {
+        }
+    }
+
+    // Removes only our private highlights
+    public void removeHighlights(JTextComponent textComp) {
+        Highlighter hilite = textComp.getHighlighter();
+        Highlighter.Highlight[] hilites = hilite.getHighlights();
+
+        for (int i=0; i<hilites.length; i++) {
+            if (hilites[i].getPainter() instanceof TextAreaHighlight.MyHighlightPainter) {
+                hilite.removeHighlight(hilites[i]);
+            }
         }
     }
 

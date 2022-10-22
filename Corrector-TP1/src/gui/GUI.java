@@ -175,43 +175,38 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         // For words that are not in dico
         // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
         // Sort on Val and keep only top 5
-
         //Outer hashmap containing words, with its 5 closest contendants
         HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
         for (int i = 0; i < texteAVerif.size(); i++) {
             String toCheck = texteAVerif.get(i);
             boolean seen = false;
+            HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
             for (int j = 0; j < texteDico.size(); j++) {
                 if (compute_Levenshtein_distanceDP(toCheck, texteDico.get(j))!=0) {
-                    HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
+                    seen = true;
                     //Compute levenshtein distance as word was not found
-                    for (int k = 0; k < texteDico.size(); k++) {
-                        //TODO
-                        // Create hashmap have words in dico and their distance with current word
-                        wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
+                }
+            }
+            if (seen == false){
+                System.out.println(toCheck);
+                for (int k = 0; k < texteDico.size(); k++) {
+                    wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
+                }
+                System.out.println(wordAndDistance.toString());
+                Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
+                HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
+                int n = 0;
+                for (Map.Entry<String, Integer> en : hm1.entrySet()) {
+                    if (n == 5) {
+                        break;
                     }
-
-                    //TODO
-                    // Create a hashmap to store words and associated top 5 closest words
-                    // 1) Sort the hashmap words
-                    // 2) Keep first 5 elements
-                    // 3) Create hashmap
-                    Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
-                    HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
-                    int n = 0;
-                    for (Map.Entry<String, Integer> en : hm1.entrySet()) {
-                        if (n == 5) {
-                            break;
-                        }
-                        top5Distances.put(en.getKey(), en.getValue());
-                        //System.out.println("Key = " + en.getKey() +
-                        //        ", Value = " + en.getValue());
-                        n++;
-                    }
+                    top5Distances.put(en.getKey(), en.getValue());
+                    //System.out.println("Key = " + en.getKey() +
+                    //        ", Value = " + en.getValue());
+                    n++;
                     wordAndDistance.put(toCheck, top5Distances);
                 }
             }
-            System.out.println(wordAndDistance.toString());
         }
         for (String key : wordAndDistance.keySet()) {
             highlight(key);
@@ -313,7 +308,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             this.ecrireFichier();
         }
         if (e.getSource() == this.verif) {
-            System.out.println(stringArrayList(ta.getText()));
+            //System.out.println(stringArrayList(ta.getText()));
             texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             //System.out.println(texteAVerif);
             try {

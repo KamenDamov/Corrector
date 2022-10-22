@@ -182,9 +182,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             boolean seen = false;
             HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
             for (int j = 0; j < texteDico.size(); j++) {
-                if (compute_Levenshtein_distanceDP(toCheck, texteDico.get(j))!=0) {
+                if (compute_Levenshtein_distanceDP(toCheck, texteDico.get(j))==0) {
                     seen = true;
-                    //Compute levenshtein distance as word was not found
                 }
             }
             if (seen == false){

@@ -16,17 +16,17 @@ import java.util.List;
 
 public class GUI extends JFrame implements EventListener, ActionListener {
 
-    private JFileChooser fc;
+    protected JFileChooser fc;
     protected ArrayList<String> texte;
     protected ArrayList<String> texteDico;
     protected ArrayList<String> texteAVerif;
 
     protected ArrayList<String> textArea;
-    private JTextArea ta;
-    private JButton chooser;
-    private JButton dictionnaire;
-    private JButton ecrire;
-    private JButton verif;
+    protected JTextArea ta;
+    protected JButton chooser;
+    protected JButton dictionnaire;
+    protected JButton ecrire;
+    protected JButton verif;
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {

@@ -8,6 +8,8 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
@@ -54,6 +56,33 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
         this.verif.addActionListener(this);
+
+        ta.addMouseListener( new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                if ( SwingUtilities.isRightMouseButton(e) )
+                {
+                    try
+                    {
+                        int offset = ta.viewToModel( e.getPoint() );
+                        System.out.println( ta.modelToView( offset ) );
+                        int start = Utilities.getWordStart(ta,offset);
+                        int end = Utilities.getWordEnd(ta, offset);
+                        String word = ta.getDocument().getText(start, end-start);
+                        System.out.println( "Selected word: " + word);
+                        int rowStart = Utilities.getRowStart(ta, offset);
+                        int rowEnd = Utilities.getRowEnd(ta, offset);
+                        System.out.println( "Row start offset: " + rowStart );
+                        System.out.println( "Row end   offset: " + rowEnd );
+                        ta.select(rowStart, rowEnd);
+                    }
+                    catch (Exception e2) {}
+                }
+            }
+        });
+
+        
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

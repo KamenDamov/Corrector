@@ -4,12 +4,11 @@ import dictionnaire.Dico;
 import jdk.internal.loader.URLClassPath;
 
 import javax.swing.*;
+import javax.swing.event.CaretEvent;
+import javax.swing.event.CaretListener;
 import javax.swing.text.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.io.*;
 import java.lang.reflect.Array;
 import java.util.*;
@@ -82,7 +81,27 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             }
         });
 
-        
+        ta.addCaretListener( new CaretListener()
+        {
+            public void caretUpdate(CaretEvent e)
+            {
+                int caretPosition = ta.getCaretPosition();
+                Element root = ta.getDocument().getDefaultRootElement(
+                );
+                int row = root.getElementIndex( caretPosition );
+                int column = caretPosition - root.getElement( row ).getStartOffset();
+                System.out.println( "Row   : " + ( row + 1 ) );
+                System.out.println( "Column: " + ( column + 1 ) );
+            }
+        });
+
+        ta.addKeyListener( new KeyAdapter()
+        {
+            public void keyPressed(KeyEvent e)
+            {
+                System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
+            }
+        });
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

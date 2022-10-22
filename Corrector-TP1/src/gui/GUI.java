@@ -182,43 +182,39 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             String toCheck = texteAVerif.get(i);
             boolean seen = false;
             for (int j = 0; j < texteDico.size(); j++) {
-                if (toCheck == texteDico.get(j)) {
-                    seen = true;
-                }
-            }
-            if (seen == false) {
-                HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
-                System.out.println(toCheck);
-                //Compute levenshtein distance as word was not found
-                System.out.println(texteDico.size());
-                for (int k = 0; k < texteDico.size(); k++) {
-                    //TODO
-                    // Create hashmap have words in dico and their distance with current word
-                    wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
-                }
-
-                //TODO
-                // Create a hashmap to store words and associated top 5 closest words
-                // 1) Sort the hashmap words
-                // 2) Keep first 5 elements
-                // 3) Create hashmap
-                //System.out.println(wordLevenDistanceMap.toString());
-                //System.out.println(wordLevenDistanceMap.size());
-                Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
-                HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
-                int n = 0;
-                for (Map.Entry<String, Integer> en : hm1.entrySet()) {
-                    if (n == 5) {
-                        break;
+                if (compute_Levenshtein_distanceDP(toCheck, texteDico.get(j))!=0) {
+                    HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
+                    //Compute levenshtein distance as word was not found
+                    for (int k = 0; k < texteDico.size(); k++) {
+                        //TODO
+                        // Create hashmap have words in dico and their distance with current word
+                        wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                     }
-                    top5Distances.put(en.getKey(), en.getValue());
-                    System.out.println("Key = " + en.getKey() +
-                            ", Value = " + en.getValue());
-                    n++;
+
+                    //TODO
+                    // Create a hashmap to store words and associated top 5 closest words
+                    // 1) Sort the hashmap words
+                    // 2) Keep first 5 elements
+                    // 3) Create hashmap
+                    Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
+                    HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
+                    int n = 0;
+                    for (Map.Entry<String, Integer> en : hm1.entrySet()) {
+                        if (n == 5) {
+                            break;
+                        }
+                        top5Distances.put(en.getKey(), en.getValue());
+                        //System.out.println("Key = " + en.getKey() +
+                        //        ", Value = " + en.getValue());
+                        n++;
+                    }
+                    wordAndDistance.put(toCheck, top5Distances);
                 }
-                wordAndDistance.put(toCheck, top5Distances);
             }
             System.out.println(wordAndDistance.toString());
+        }
+        for (String key : wordAndDistance.keySet()) {
+            highlight(key);
         }
         return wordAndDistance;
     }
@@ -309,7 +305,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
 
         if (e.getSource() == this.dictionnaire) {
-            System.out.println(chargerFichier());
             texteDico = this.vectorize(chargerFichier(), 'n');
             //System.out.println(texteDico);
         }

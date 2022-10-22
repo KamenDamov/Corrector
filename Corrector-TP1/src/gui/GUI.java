@@ -26,7 +26,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     private JButton dictionnaire;
     private JButton ecrire;
     private JButton verif;
-    Highlighter.HighlightPainter myHighlightPainter = new .MyHighlightPainter(Color.red);
+    Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {
             super(color);

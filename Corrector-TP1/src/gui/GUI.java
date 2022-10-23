@@ -80,8 +80,13 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //Corrector c = new Corrector(word);
                         //TODO
                         // Add the words instead of hello
-                        System.out.println(check().get(word).toString());
-                        this.taCorrect = new JTextArea("Hello", 300, 20);
+                        //System.out.println(check().get(word).toString());
+                        ArrayList keys = new ArrayList();
+                        for (int i = 0; i < check().get(word).size(); i++) {
+                            keys.add(check().get(word).keySet());
+                            System.out.println("Looping here");
+                        }
+                        this.taCorrect = new JTextArea(keys.toString(), 300, 20);
                         haut.add(this.taCorrect);
                     }
                     catch (Exception e2) {}
@@ -246,7 +251,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 for (int k = 0; k < texteDico.size(); k++) {
                     wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }
-                System.out.println(wordAndDistance.toString());
+                //System.out.println(wordAndDistance.toString());
                 Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
                 HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
                 int n = 0;

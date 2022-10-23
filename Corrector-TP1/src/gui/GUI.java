@@ -53,7 +53,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         haut.add(ecrire);
         this.verif = new JButton("verifier");
         haut.add(verif);
-        this.taCorrect = new JTextArea("Aller", 300, 30);
+        this.taCorrect = new JTextArea("", 300, 30);
         est.add(this.taCorrect);
         this.fc = new JFileChooser();
         this.texte = new ArrayList();
@@ -86,12 +86,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //TODO
                         // Add the words instead of hello
                         // Append to textarea
-                        String toAppend = "";
-                        for (Object key: check().get(word).keySet()) {
-                            toAppend += key.toString() + "\n";
-                        }
-                        //this.taCorrect = new JTextArea(toAppend, 300, 20);
-                        //haut.add(this.taCorrect);
+                        updateInterfaceToDict(word);
                     }
                     catch (Exception e2) {}
                 }
@@ -148,12 +143,10 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         for (Object key: check().get(word).keySet()) {
                             toAppend += key.toString() + "\n";
                         }
-                        //this.taCorrect = new JTextArea(toAppend, 300, 20);
-                        //haut.add(this.taCorrect);
+
                     }
                     catch (Exception e2) {}
                 }
-                repaint();
             }
         });
 
@@ -188,9 +181,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     }
 
     //Create a connector function - Interface to Dico
-    public void updateInterfaceToDict(String word){
-        
-        taCorrect.append();
+    public void updateInterfaceToDict(String word) throws IOException {
+        String toAppend = "";
+        for (Object key: check().get(word).keySet()) {
+            toAppend += key.toString() + "\n";
+        }
+        taCorrect.append(toAppend);
     }
 
     //Create a connector function - Dico to interface

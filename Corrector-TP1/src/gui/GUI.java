@@ -185,6 +185,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     //Create a connector function - Dico to interface
     public void updateDictToInterface(String word){
+        //TODO
+        // Change for word that is in the textarea currently
         
     }
 

@@ -78,6 +78,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
                         //Corrector c = new Corrector(word);
+                        //TODO
+                        // Add the words instead of hello
+                        System.out.println(check().get(word).toString());
                         this.taCorrect = new JTextArea("Hello", 300, 20);
                         haut.add(this.taCorrect);
                     }

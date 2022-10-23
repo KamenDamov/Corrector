@@ -39,8 +39,10 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public GUI() {
         JPanel haut = new JPanel();
         JPanel bas = new JPanel();
+        JPanel est = new JPanel();
         this.add(haut, "North");
         this.add(bas, "Center");
+        this.add(est, "East");
         this.ta = new JTextArea("textarea", 300, 30);
         bas.add(this.ta);
         this.chooser = new JButton("choisir");
@@ -51,8 +53,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         haut.add(ecrire);
         this.verif = new JButton("verifier");
         haut.add(verif);
-        this.taCorrect = new JTextArea("textarea", 300, 30);
-        haut.add(this.taCorrect);
+        this.taCorrect = new JTextArea("Aller", 300, 30);
+        est.add(this.taCorrect);
         this.fc = new JFileChooser();
         this.texte = new ArrayList();
         this.chooser.addActionListener(this);

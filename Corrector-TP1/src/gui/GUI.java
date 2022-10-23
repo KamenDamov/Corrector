@@ -82,10 +82,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         // Add the words instead of hello
                         //System.out.println(check().get(word).toString());
                         ArrayList keys = new ArrayList();
-                        for (int i = 0; i < check().get(word).size(); i++) {
-                            keys.add(check().get(word).keySet());
-                            System.out.println("Looping here");
-                        }
+                        keys.add(check().get(word).keySet());
                         this.taCorrect = new JTextArea(keys.toString(), 300, 20);
                         haut.add(this.taCorrect);
                     }

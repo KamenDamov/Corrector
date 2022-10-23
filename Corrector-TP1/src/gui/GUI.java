@@ -77,13 +77,15 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //System.out.println( "Row start offset: " + rowStart );
                         //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
-                        //Corrector c = new Corrector(word);
                         //TODO
                         // Add the words instead of hello
-                        //System.out.println(check().get(word).toString());
-                        ArrayList keys = new ArrayList();
-                        keys.add(check().get(word).keySet());
-                        this.taCorrect = new JTextArea(keys.toString(), 300, 20);
+                        // Append to textarea
+                        String toAppend = "";
+                        for (Object key: check().get(word).keySet()) {
+                            toAppend += key.toString() + "\n";
+                        }
+
+                        this.taCorrect = new JTextArea(toAppend, 300, 20);
                         haut.add(this.taCorrect);
                     }
                     catch (Exception e2) {}

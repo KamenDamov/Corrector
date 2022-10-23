@@ -84,7 +84,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         for (Object key: check().get(word).keySet()) {
                             toAppend += key.toString() + "\n";
                         }
-
                         this.taCorrect = new JTextArea(toAppend, 300, 20);
                         haut.add(this.taCorrect);
                     }
@@ -111,7 +110,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         {
             public void keyPressed(KeyEvent e)
             {
-                System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
+                //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
         });
 
@@ -246,7 +245,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 }
             }
             if (seen == false){
-                System.out.println(toCheck);
+                //System.out.println(toCheck);
                 for (int k = 0; k < texteDico.size(); k++) {
                     wordLevenDistanceMap.put(texteDico.get(k), compute_Levenshtein_distanceDP(toCheck, texteDico.get(k)));
                 }

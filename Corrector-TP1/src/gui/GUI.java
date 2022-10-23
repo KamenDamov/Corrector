@@ -137,6 +137,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //TODO
                         // Add the words instead of hello
                         // Append to textarea
+                        updateDictToInterface(word);
 
                     }
                     catch (Exception e2) {}
@@ -187,7 +188,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void updateDictToInterface(String word){
         //TODO
         // Change for word that is in the textarea currently
-        
+        System.out.println("JE SUIS LA");
+        ta.append(word);
     }
 
     public <ArrayList> java.util.ArrayList<String> chargerFichier() {

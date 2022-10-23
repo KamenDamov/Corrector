@@ -9,12 +9,12 @@ public class Corrector extends GUI implements EventListener, ActionListener {
     //TODO
     // This class will produce new interface adding new textarea with buttons
     protected JTextArea taprop;
-    public Corrector(){
+    public Corrector(String word){
         super();
+        System.out.println(word);
         JPanel bas = new JPanel();
         this.taprop = new JTextArea("Hey", 300, 30);
         bas.add(this.taprop);
         taprop.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
     }
-
 }

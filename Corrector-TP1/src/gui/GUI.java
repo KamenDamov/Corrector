@@ -58,6 +58,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
         ta.addMouseListener( new MouseAdapter()
         {
+            private JTextArea taCorrect;
+
             public void mouseClicked(MouseEvent e)
             {
                 if ( SwingUtilities.isRightMouseButton(e) )
@@ -65,16 +67,19 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     try
                     {
                         int offset = ta.viewToModel( e.getPoint() );
-                        System.out.println( ta.modelToView( offset ) );
+                        //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(ta,offset);
                         int end = Utilities.getWordEnd(ta, offset);
                         String word = ta.getDocument().getText(start, end-start);
-                        System.out.println( "Selected word: " + word);
+                        //System.out.println( "Selected word: " + word);
                         int rowStart = Utilities.getRowStart(ta, offset);
                         int rowEnd = Utilities.getRowEnd(ta, offset);
-                        System.out.println( "Row start offset: " + rowStart );
-                        System.out.println( "Row end   offset: " + rowEnd );
+                        //System.out.println( "Row start offset: " + rowStart );
+                        //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
+                        //Corrector c = new Corrector(word);
+                        this.taCorrect = new JTextArea("Hello", 300, 20);
+                        haut.add(this.taCorrect);
                     }
                     catch (Exception e2) {}
                 }
@@ -90,8 +95,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 );
                 int row = root.getElementIndex( caretPosition );
                 int column = caretPosition - root.getElement( row ).getStartOffset();
-                System.out.println( "Row   : " + ( row + 1 ) );
-                System.out.println( "Column: " + ( column + 1 ) );
+                //System.out.println( "Row   : " + ( row + 1 ) );
+                //System.out.println( "Column: " + ( column + 1 ) );
             }
         });
 
@@ -247,8 +252,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         break;
                     }
                     top5Distances.put(en.getKey(), en.getValue());
-                    //System.out.println("Key = " + en.getKey() +
-                    //        ", Value = " + en.getValue());
                     n++;
                     wordAndDistance.put(toCheck, top5Distances);
                 }
@@ -341,22 +344,18 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
             texte = this.vectorize(chargerFichier(), 'n');
-            //System.out.println(texte);
             this.afficher();
         }
 
         if (e.getSource() == this.dictionnaire) {
             texteDico = this.vectorize(chargerFichier(), 'n');
-            //System.out.println(texteDico);
         }
 
         if (e.getSource() == this.ecrire) {
             this.ecrireFichier();
         }
         if (e.getSource() == this.verif) {
-            //System.out.println(stringArrayList(ta.getText()));
             texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
-            //System.out.println(texteAVerif);
             try {
                 this.check();
             } catch (IOException ex) {

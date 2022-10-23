@@ -117,32 +117,26 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         });
         taCorrect.addMouseListener( new MouseAdapter()
         {
-            private JTextArea taCorrect;
-
             public void mouseClicked(MouseEvent e)
             {
                 if ( SwingUtilities.isRightMouseButton(e) )
                 {
                     try
                     {
-                        int offset = ta.viewToModel( e.getPoint() );
+                        int offset = taCorrect.viewToModel( e.getPoint() );
                         //System.out.println( ta.modelToView( offset ) );
-                        int start = Utilities.getWordStart(ta,offset);
-                        int end = Utilities.getWordEnd(ta, offset);
-                        String word = ta.getDocument().getText(start, end-start);
+                        int start = Utilities.getWordStart(taCorrect,offset);
+                        int end = Utilities.getWordEnd(taCorrect, offset);
+                        String word = taCorrect.getDocument().getText(start, end-start);
                         System.out.println( "Selected word: " + word);
-                        int rowStart = Utilities.getRowStart(ta, offset);
-                        int rowEnd = Utilities.getRowEnd(ta, offset);
+                        int rowStart = Utilities.getRowStart(taCorrect, offset);
+                        int rowEnd = Utilities.getRowEnd(taCorrect, offset);
                         System.out.println( "Row start offset: " + rowStart );
                         System.out.println( "Row end   offset: " + rowEnd );
-                        ta.select(rowStart, rowEnd);
+                        taCorrect.select(rowStart, rowEnd);
                         //TODO
                         // Add the words instead of hello
                         // Append to textarea
-                        String toAppend = "";
-                        for (Object key: check().get(word).keySet()) {
-                            toAppend += key.toString() + "\n";
-                        }
 
                     }
                     catch (Exception e2) {}
@@ -154,8 +148,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         {
             public void caretUpdate(CaretEvent e)
             {
-                int caretPosition = ta.getCaretPosition();
-                Element root = ta.getDocument().getDefaultRootElement(
+                int caretPosition = taCorrect.getCaretPosition();
+                Element root = taCorrect.getDocument().getDefaultRootElement(
                 );
                 int row = root.getElementIndex( caretPosition );
                 int column = caretPosition - root.getElement( row ).getStartOffset();

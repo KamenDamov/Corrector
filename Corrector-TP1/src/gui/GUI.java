@@ -185,7 +185,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     //Create a connector function - Dico to interface
     public void updateDictToInterface(String word){
-
+        
     }
 
     public <ArrayList> java.util.ArrayList<String> chargerFichier() {

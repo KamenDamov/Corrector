@@ -234,9 +234,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     }
 
-    public void afficher() {
-        if (this.texte != null) {
-            Iterator var1 = this.texte.iterator();
+    public void afficher(ArrayList<String> t) {
+        if (t != null) {
+            Iterator var1 = t.iterator();
 
             while(var1.hasNext()) {
                 String s = (String)var1.next();
@@ -259,7 +259,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 newText.add(i, chargerFichier.get(i).toLowerCase());
             }
             return newText;
-        } else {/*
+        } else {
+            System.out.println("Fichier lu");
+            /*
             StringBuilder strBuilder = new StringBuilder();
             for (int i = 0; i < chargerFichier.size(); i++) {
                 strBuilder.append(chargerFichier.get(i));
@@ -427,7 +429,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
             texte = this.vectorize(chargerFichier(), 'n');
-            this.afficher();
+            this.afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {

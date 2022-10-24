@@ -428,8 +428,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            texte = vectorize(chargerFichier(), 'n');
-            afficher(texte);
+            texte = this.vectorize(chargerFichier(), 'n');
+            System.out.println(texte.toString());
+            this.afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {

@@ -28,7 +28,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected JButton ecrire;
     protected JButton verif;
     protected JTextArea taCorrect;
-
+    protected int startNewWord;
+    protected int endNewWord;
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {
@@ -76,6 +77,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(ta,offset);
                         int end = Utilities.getWordEnd(ta, offset);
+                        startNewWord = Utilities.getWordStart(ta,offset);
+                        endNewWord = Utilities.getWordEnd(ta, offset);
                         String word = ta.getDocument().getText(start, end-start);
                         System.out.println( "Selected word: " + word);
                         int rowStart = Utilities.getRowStart(ta, offset);
@@ -189,7 +192,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         //TODO
         // Change for word that is in the textarea currently
         System.out.println("JE SUIS LA");
-        ta.append(word);
+        ta.replaceRange(word, startNewWord, endNewWord);
+        //ta.insert(word, startNewWord);
     }
 
     public <ArrayList> java.util.ArrayList<String> chargerFichier() {

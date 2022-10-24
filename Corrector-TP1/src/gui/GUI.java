@@ -240,7 +240,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
             while(var1.hasNext()) {
                 String s = (String)var1.next();
-                this.ta.append(s + "\n");
+                ta.append(s + "\n");
             }
         }
 
@@ -428,8 +428,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            texte = this.vectorize(chargerFichier(), 'n');
-            this.afficher(texte);
+            texte = vectorize(chargerFichier(), 'n');
+            afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {

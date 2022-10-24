@@ -193,6 +193,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         // Change for word that is in the textarea currently
         System.out.println("JE SUIS LA");
         ta.replaceRange(word, startNewWord, endNewWord);
+        taCorrect.selectAll();
+        taCorrect.replaceSelection("");
         //ta.insert(word, startNewWord);
     }
 

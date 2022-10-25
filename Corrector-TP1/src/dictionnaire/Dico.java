@@ -1,71 +1,87 @@
 package dictionnaire;
 
-import gui.GUI;
-
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
-public class Dico extends GUI {
+public class Dico {
 
-    //Idea:
-    //Create a static method to keep dico in this class only
-    //Get text in text area through accessor method in Text class.
-    //public static String content;
+    public static ArrayList<String> dict;
 
-    public Dico() {
-        super();
+    public Dico(ArrayList<String> dict) {
+        this.dict = dict;
+        System.out.println(dict.toString());
     }
-/*
-    //Notre dictionnaire
-    public ArrayList<String> grabDico(ArrayList<String> chargerFichier) {
-        StringBuilder strBuilder = new StringBuilder();
-        for (int i = 0; i < chargerFichier.size(); i++) {
-            strBuilder.append(chargerFichier.get(i));
+    public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
+    {
+        // Create a list from elements of HashMap
+        List<Map.Entry<String, Integer> > list =
+                new LinkedList<Map.Entry<String, Integer> >(hm.entrySet());
+
+        // Sort the list
+        Collections.sort(list, new Comparator<Map.Entry<String, Integer> >() {
+            public int compare(Map.Entry<String, Integer> o1,
+                               Map.Entry<String, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+
+        // put data from sorted list to hashmap
+        HashMap<String, Integer> temp = new LinkedHashMap<String, Integer>();
+        for (Map.Entry<String, Integer> aa : list) {
+            temp.put(aa.getKey(), aa.getValue());
         }
-        String str = strBuilder.toString();
-        String clean = str.replaceAll("\\p{P}", "").toLowerCase();
-        List<String> texte = new ArrayList<>(Arrays.asList(clean.split(" ")));
-        //System.out.println(cleaned.toString());
-        for (int i = 0; i < texte.size(); i++) {
-            //System.out.println(cleaned.get(i));
-            if (texte.get(i) == "\n" || texte.get(i).isEmpty()) {
-                texte.remove(i);
+        return temp;
+    }
+
+    public static String getHM(){
+        return "Gotcha";
+    }
+    public static HashMap<String, HashMap> check(ArrayList<String> texteAVerif) throws IOException {
+        //TODO
+        // Naive algo: 2 for loops equating to O(n*m) algo
+        // For words that are not in dico
+        // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
+        // Sort on Val and keep only top 5
+        //Outer hashmap containing words, with its 5 closest contendants
+        HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
+        for (int i = 0; i < texteAVerif.size(); i++) {
+            String toCheck = texteAVerif.get(i);
+            boolean seen = false;
+            HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
+            for (int j = 0; j < dict.size(); j++) {
+                if (compute_Levenshtein_distanceDP(toCheck, dict.get(j))==0) {
+                    seen = true;
+                }
+            }
+            if (seen == false){
+                //System.out.println(toCheck);
+                for (int k = 0; k < dict.size(); k++) {
+                    wordLevenDistanceMap.put(dict.get(k), compute_Levenshtein_distanceDP(toCheck, dict.get(k)));
+                }
+                //System.out.println(wordAndDistance.toString());
+                Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
+                HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
+                int n = 0;
+                for (Map.Entry<String, Integer> en : hm1.entrySet()) {
+                    if (n == 5) {
+                        break;
+                    }
+                    top5Distances.put(en.getKey(), en.getValue());
+                    n++;
+                    wordAndDistance.put(toCheck, top5Distances);
+                }
             }
         }
-        //System.out.println(cleaned);
-        return (ArrayList) texte;
-    }
-*/
-    public <ArrayList> java.util.ArrayList<String> grabText(){
-        System.out.println(texte);
-        return super.texte;
+        //for (String key : wordAndDistance.keySet()) {
+        //    highlight(key);
+        //}
+        System.out.println(wordAndDistance.toString());
+        return wordAndDistance;
     }
 
-
-    public <ArrayList> java.util.ArrayList<String> grabDictionnary(){
-        System.out.println(texteDico);
-        return super.texteDico;
-    }
-    /*
-    //Stocker dictionnaire
-    public void check() throws IOException {
-        //TODO
-        // Add listener to grab text from text area!!!
-
-        System.out.println(grabDictionnary());
-        System.out.println(grabText());
-        System.out.println("Hello, I'm the check function");
-        //String s = text;
-        //List<String> l2 = new java.util.ArrayList<String>(Arrays.asList(s.split(" ")));
-        //System.out.println(dicoGood().toString());
-        //System.out.println(s);
-    }
-*/
-    //Implement Levenshtein distance algo
-    public int compute_Levenshtein_distanceDP(String str1,
-                                                     String str2)
+    public static int compute_Levenshtein_distanceDP(String str1,
+                                              String str2)
     {
 
         // A 2-D matrix to store previously calculated
@@ -109,5 +125,4 @@ public class Dico extends GUI {
         return Arrays.stream(nums).min().orElse(
                 Integer.MAX_VALUE);
     }
-
 }

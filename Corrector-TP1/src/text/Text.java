@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.EventListener;
 
-public class Text extends Dico implements EventListener {
+public class Text implements EventListener {
 
     public static String text;
     public Text(String text){

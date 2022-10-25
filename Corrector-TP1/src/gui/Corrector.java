@@ -28,6 +28,7 @@ public class Corrector implements EventListener{
 
     public String updateInterfaceToDict(String word) throws IOException {
         String toAppend = "";
+        System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
         for (Object key: Dico.check(stringArrayList(words)).get(word).keySet()) {
             toAppend += key.toString() + "\n";
         }

@@ -197,7 +197,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         //ta.insert(word, startNewWord);
     }
 
-    public <ArrayList> java.util.ArrayList<String> chargerFichier() {
+    public <ArrayList> java.util.ArrayList<String> chargerFichier(char discrim) {
+        if (discrim == 't') {
             int val = this.fc.showOpenDialog(this);
 
             try {
@@ -205,7 +206,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     BufferedReader r = new BufferedReader(new FileReader(this.fc.getSelectedFile()));
                     String line = null;
 
-                    while((line = r.readLine()) != null) {
+                    while ((line = r.readLine()) != null) {
                         this.texte.add(line);
                     }
 
@@ -216,7 +217,27 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             }
 
             return texte;
+        } else {
+            int val = this.fc.showOpenDialog(this);
+
+            try {
+                if (val == 0) {
+                    BufferedReader r = new BufferedReader(new FileReader(this.fc.getSelectedFile()));
+                    String line = null;
+
+                    while ((line = r.readLine()) != null) {
+                        this.texteDico.add(line);
+                    }
+
+                    r.close();
+                }
+            } catch (Exception var4) {
+                var4.printStackTrace();
+            }
+
+            return texteDico;
         }
+    }
 
 
     public void ecrireFichier() {
@@ -428,14 +449,16 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
             //texte = this.vectorize(chargerFichier('c'), 'n');
-            texte = chargerFichier();
+            texte = chargerFichier('t');
             System.out.println(texte.toString());
             this.afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {
             //texteDico = this.vectorize(chargerFichier('n'), 'n');
-            Dico dict = new Dico(chargerFichier());
+            texteDico = chargerFichier('n');
+            System.out.println(texteDico);
+            Dico dict = new Dico(texteDico);
         }
 
         if (e.getSource() == this.ecrire) {

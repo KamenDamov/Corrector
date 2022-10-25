@@ -3,6 +3,10 @@ package gui;
 import dictionnaire.Dico;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Document;
+import javax.swing.text.Highlighter;
+import javax.swing.text.JTextComponent;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -10,6 +14,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EventListener;
 import java.util.HashMap;
+
+import static dictionnaire.Dico.*;
 
 public class Corrector implements EventListener{
     //TODO
@@ -30,6 +36,7 @@ public class Corrector implements EventListener{
         String toAppend = "";
         System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
         for (Object key: Dico.check(stringArrayList(words)).get(word).keySet()) {
+            System.out.println(key);
             toAppend += key.toString() + "\n";
         }
         return toAppend;

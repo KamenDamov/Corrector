@@ -30,6 +30,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected JTextArea taCorrect;
     protected int startNewWord;
     protected int endNewWord;
+    String word;
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {
@@ -63,11 +64,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
         this.verif.addActionListener(this);
-
+/*
         ta.addMouseListener( new MouseAdapter()
         {
-            private JTextArea taCorrect;
-
             public void mouseClicked(MouseEvent e)
             {
                 if ( SwingUtilities.isRightMouseButton(e) )
@@ -96,7 +95,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 }
                 repaint();
             }
-        });
+        });*/
 
         ta.addCaretListener( new CaretListener()
         {
@@ -141,7 +140,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //TODO
                         // Add the words instead of hello
                         // Append to textarea
-                        updateDictToInterface(word);
+                        //updateDictToInterface(word);
 
                     }
                     catch (Exception e2) {}
@@ -170,7 +169,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
         });
-
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -430,6 +428,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
             //texte = this.vectorize(chargerFichier('c'), 'n');
+            texte = chargerFichier();
             System.out.println(texte.toString());
             this.afficher(texte);
         }
@@ -446,11 +445,60 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText());
             corr.stringArrayList(ta.getText());
-            try {
-                taCorrect.append(corr.updateInterfaceToDict(ta.getText()));
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
+            ta.addMouseListener( new MouseAdapter()
+            {
+                public void mouseClicked(MouseEvent e)
+                {
+                    if ( SwingUtilities.isRightMouseButton(e) )
+                    {
+                        try
+                        {
+                            int offset = ta.viewToModel( e.getPoint() );
+                            //System.out.println( ta.modelToView( offset ) );
+                            int start = Utilities.getWordStart(ta,offset);
+                            int end = Utilities.getWordEnd(ta, offset);
+                            startNewWord = Utilities.getWordStart(ta,offset);
+                            endNewWord = Utilities.getWordEnd(ta, offset);
+                            String word = ta.getDocument().getText(start, end-start);
+                            System.out.println( "Selected word: " + word);
+                            int rowStart = Utilities.getRowStart(ta, offset);
+                            int rowEnd = Utilities.getRowEnd(ta, offset);
+                            System.out.println( "Row start offset: " + rowStart );
+                            System.out.println( "Row end   offset: " + rowEnd );
+                            ta.select(rowStart, rowEnd);
+                            //TODO
+                            // Add the words instead of hello
+                            // Append to textarea
+                            //updateInterfaceToDict(word);
+                            taCorrect.append(corr.updateInterfaceToDict(word));
+                        }
+                        catch (Exception e2) {}
+                    }
+                    repaint();
+                }
+            });
+            ta.addCaretListener( new CaretListener()
+            {
+                public void caretUpdate(CaretEvent e)
+                {
+                    int caretPosition = ta.getCaretPosition();
+                    Element root = ta.getDocument().getDefaultRootElement(
+                    );
+                    int row = root.getElementIndex( caretPosition );
+                    int column = caretPosition - root.getElement( row ).getStartOffset();
+                    //System.out.println( "Row   : " + ( row + 1 ) );
+                    //System.out.println( "Column: " + ( column + 1 ) );
+                }
+            });
+
+            ta.addKeyListener( new KeyAdapter()
+            {
+                public void keyPressed(KeyEvent e)
+                {
+                    //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
+                }
+            });
+
         }
     }
 }

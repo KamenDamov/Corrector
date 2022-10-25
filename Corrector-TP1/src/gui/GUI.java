@@ -58,6 +58,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         est.add(this.taCorrect);
         this.fc = new JFileChooser();
         this.texte = new ArrayList();
+        this.texteDico = new ArrayList<>();
         this.chooser.addActionListener(this);
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
@@ -198,25 +199,47 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         //ta.insert(word, startNewWord);
     }
 
-    public <ArrayList> java.util.ArrayList<String> chargerFichier() {
-        int val = this.fc.showOpenDialog(this);
+    public <ArrayList> java.util.ArrayList<String> chargerFichier(char discrim) {
+        if (discrim == 'c'){
+            int val = this.fc.showOpenDialog(this);
 
-        try {
-            if (val == 0) {
-                BufferedReader r = new BufferedReader(new FileReader(this.fc.getSelectedFile()));
-                String line = null;
+            try {
+                if (val == 0) {
+                    BufferedReader r = new BufferedReader(new FileReader(this.fc.getSelectedFile()));
+                    String line = null;
 
-                while((line = r.readLine()) != null) {
-                    this.texte.add(line);
+                    while((line = r.readLine()) != null) {
+                        this.texte.add(line);
+                    }
+
+                    r.close();
                 }
-
-                r.close();
+            } catch (Exception var4) {
+                var4.printStackTrace();
             }
-        } catch (Exception var4) {
-            var4.printStackTrace();
-        }
 
-        return texte;
+            return texte;
+        }
+        else{
+            int val = this.fc.showOpenDialog(this);
+
+            try {
+                if (val == 0) {
+                    BufferedReader r = new BufferedReader(new FileReader(this.fc.getSelectedFile()));
+                    String line = null;
+
+                    while((line = r.readLine()) != null) {
+                        this.texteDico.add(line);
+                    }
+
+                    r.close();
+                }
+            } catch (Exception var4) {
+                var4.printStackTrace();
+            }
+
+            return texteDico;
+        }
     }
 
     public void ecrireFichier() {
@@ -428,13 +451,13 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
-            texte = this.vectorize(chargerFichier(), 'n');
+            texte = this.vectorize(chargerFichier('c'), 'n');
             System.out.println(texte.toString());
             this.afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {
-            texteDico = this.vectorize(chargerFichier(), 'n');
+            texteDico = this.vectorize(chargerFichier('n'), 'n');
         }
 
         if (e.getSource() == this.ecrire) {

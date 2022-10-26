@@ -34,15 +34,15 @@ public class Corrector implements EventListener{
     //Vectorize the words
     public ArrayList<String> stringArrayList(String s) {
         ArrayList<String> list = new ArrayList<>(Arrays.asList(words.split(" ")));
-        System.out.println(list);
+        //System.out.println(list);
         return list;
     }
 
     public String updateInterfaceToDict(String word) throws IOException {
         String toAppend = "";
-        System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
+        //System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
         for (Object key: Dico.check(stringArrayList(words)).get(word).keySet()) {
-            System.out.println(key);
+            //System.out.println(key);
             toAppend += key.toString() + "\n";
         }
         return toAppend;

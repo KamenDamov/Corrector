@@ -9,7 +9,7 @@ public class Dico {
 
     public Dico(ArrayList<String> dict) {
         this.dict = dict;
-        System.out.println(dict.toString());
+        //System.out.println(dict.toString());
     }
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
     {

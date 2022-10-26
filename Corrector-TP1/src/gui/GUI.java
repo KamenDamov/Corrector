@@ -118,6 +118,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
         });
+        /*
         taCorrect.addMouseListener( new MouseAdapter()
         {
             public void mouseClicked(MouseEvent e)
@@ -168,7 +169,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             {
                 //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
-        });
+        });*/
 
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -239,7 +240,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
     }
 
-
     public void ecrireFichier() {
         int val = this.fc.showOpenDialog(this);
 
@@ -270,7 +270,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         ArrayList<String> list = new ArrayList<>(Arrays.asList(s.split(" ")));
         return list;
     }
-
+    /*
     //Structure interne de notre dico
     public ArrayList<String> vectorize(ArrayList<String> chargerFichier, char v) {
         if (v == 'o') {
@@ -296,12 +296,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 if (texte.get(i) == null || texte.get(i).isEmpty()) {
                     texte.remove(i);
                 }
-            }*/
+            }
             //System.out.println(cleaned);
             return (ArrayList) chargerFichier;
         }
     }
-
+*/
     //Sorting the hashmap
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
     {
@@ -489,10 +489,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             System.out.println( "Row start offset: " + rowStart );
                             System.out.println( "Row end   offset: " + rowEnd );
                             ta.select(rowStart, rowEnd);
-                            //TODO
-                            // Add the words instead of hello
-                            // Append to textarea
-                            //updateInterfaceToDict(word);
                             taCorrect.append(corr.updateInterfaceToDict(word));
                         }
                         catch (Exception e2) {}
@@ -515,6 +511,63 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             });
 
             ta.addKeyListener( new KeyAdapter()
+            {
+                public void keyPressed(KeyEvent e)
+                {
+                    //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
+                }
+            });
+
+            taCorrect.addMouseListener( new MouseAdapter()
+            {
+                public void mouseClicked(MouseEvent e)
+                {
+                    if ( SwingUtilities.isRightMouseButton(e) )
+                    {
+                        try
+                        {
+                            int offset = taCorrect.viewToModel( e.getPoint() );
+                            //System.out.println( ta.modelToView( offset ) );
+                            int start = Utilities.getWordStart(taCorrect,offset);
+                            int end = Utilities.getWordEnd(taCorrect, offset);
+                            String word = taCorrect.getDocument().getText(start, end-start);
+                            System.out.println( "Selected word: " + word);
+                            int rowStart = Utilities.getRowStart(taCorrect, offset);
+                            int rowEnd = Utilities.getRowEnd(taCorrect, offset);
+                            System.out.println( "Row start offset: " + rowStart );
+                            System.out.println( "Row end   offset: " + rowEnd );
+                            taCorrect.select(rowStart, rowEnd);
+                            //TODO
+                            // Add the words instead of hello
+                            // Append to textarea
+                            ta.replaceRange(word, startNewWord, endNewWord);
+                            taCorrect.selectAll();
+                            taCorrect.replaceSelection("");
+                            //ta.insert(word, startNewWord);
+
+
+                        }
+                        catch (Exception e2) {}
+                    }
+                }
+            });
+
+            taCorrect.addCaretListener( new CaretListener()
+            {
+                public void caretUpdate(CaretEvent e)
+                {
+                    int caretPosition = taCorrect.getCaretPosition();
+                    Element root = taCorrect.getDocument().getDefaultRootElement(
+                    );
+                    int row = root.getElementIndex( caretPosition );
+                    int column = caretPosition - root.getElement( row ).getStartOffset();
+                    //System.out.println( "Row   : " + ( row + 1 ) );
+                    //System.out.println( "Column: " + ( column + 1 ) );
+
+                }
+            });
+
+            taCorrect.addKeyListener( new KeyAdapter()
             {
                 public void keyPressed(KeyEvent e)
                 {

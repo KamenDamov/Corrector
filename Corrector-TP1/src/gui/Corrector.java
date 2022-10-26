@@ -44,10 +44,11 @@ public class Corrector implements EventListener{
 
     //Add highilighting method!!!!
 
+
     public void updateDictToInterface(String word){
         //TODO
         // Change for word that is in the textarea currently
-        System.out.println("JE SUIS LA");
+        System.out.println(word);
 //        ta.replaceRange(word, startNewWord, endNewWord);
 //        taCorrect.selectAll();
 //        taCorrect.replaceSelection("");

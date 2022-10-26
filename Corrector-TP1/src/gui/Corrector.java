@@ -7,10 +7,7 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EventListener;
-import java.util.HashMap;
+import java.util.*;
 
 import static dictionnaire.Dico.*;
 
@@ -41,7 +38,8 @@ public class Corrector implements EventListener{
     public String updateInterfaceToDict(String word) throws IOException {
         String toAppend = "";
         //System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
-        for (Object key: Dico.check(stringArrayList(words)).get(word).keySet()) {
+        Set keys = check(stringArrayList(words)).get(word).keySet();
+        for (Object key: keys) {
             //System.out.println(key);
             toAppend += key.toString() + "\n";
         }

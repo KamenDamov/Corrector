@@ -191,7 +191,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     public void updateDictToInterface(String word){
         //TODO
         // Change for word that is in the textarea currently
-        System.out.println("JE SUIS LA");
+        //System.out.println("JE SUIS LA");
         ta.replaceRange(word, startNewWord, endNewWord);
         taCorrect.selectAll();
         taCorrect.replaceSelection("");
@@ -450,14 +450,14 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         if (e.getSource() == this.chooser) {
             //texte = this.vectorize(chargerFichier('c'), 'n');
             texte = chargerFichier('t');
-            System.out.println(texte.toString());
+            //System.out.println(texte.toString());
             this.afficher(texte);
         }
 
         if (e.getSource() == this.dictionnaire) {
             //texteDico = this.vectorize(chargerFichier('n'), 'n');
             texteDico = chargerFichier('n');
-            System.out.println(texteDico);
+            //System.out.println(texteDico);
             Dico dict = new Dico(texteDico);
         }
 
@@ -467,7 +467,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         if (e.getSource() == this.verif) {
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText(), ta);
-            corr.stringArrayList(ta.getText());
+            corr.stringArrayList(corr.words);
             //TODO
             try {
                 corr.highlightTextArea();
@@ -489,11 +489,11 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             startNewWord = Utilities.getWordStart(ta,offset);
                             endNewWord = Utilities.getWordEnd(ta, offset);
                             String word = ta.getDocument().getText(start, end-start);
-                            System.out.println( "Selected word: " + word);
+                            //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(ta, offset);
                             int rowEnd = Utilities.getRowEnd(ta, offset);
-                            System.out.println( "Row start offset: " + rowStart );
-                            System.out.println( "Row end   offset: " + rowEnd );
+                            //System.out.println( "Row start offset: " + rowStart );
+                            //System.out.println( "Row end   offset: " + rowEnd );
                             ta.select(rowStart, rowEnd);
                             taCorrect.append(corr.updateInterfaceToDict(word));
                         }
@@ -537,11 +537,11 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             int start = Utilities.getWordStart(taCorrect,offset);
                             int end = Utilities.getWordEnd(taCorrect, offset);
                             String word = taCorrect.getDocument().getText(start, end-start);
-                            System.out.println( "Selected word: " + word);
+                            //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(taCorrect, offset);
                             int rowEnd = Utilities.getRowEnd(taCorrect, offset);
-                            System.out.println( "Row start offset: " + rowStart );
-                            System.out.println( "Row end   offset: " + rowEnd );
+                            //System.out.println( "Row start offset: " + rowStart );
+                            //System.out.println( "Row end   offset: " + rowEnd );
                             taCorrect.select(rowStart, rowEnd);
                             //TODO
                             // Add the words instead of hello

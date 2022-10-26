@@ -34,15 +34,33 @@ public class Dico {
         return temp;
     }
 
-    public static String getHM(){
-        return "Gotcha";
-    }
     public static HashMap<String, HashMap> check(ArrayList<String> texteAVerif) throws IOException {
         //TODO
         // Naive algo: 2 for loops equating to O(n*m) algo
         // For words that are not in dico
         // Add in a hashmap KEY == DicoWord and VAL == Levenshtein Distance
         // Sort on Val and keep only top 5
+
+        //TODO
+        // Algo part2
+        // Create a hashset and check if word in it.
+        // if not find 5 closest
+        HashSet<String> wordSet = new HashSet<String>();
+        for (int i = 0; i < texteAVerif.size(); i++) {
+            if (!dict.contains(texteAVerif.get(i))){
+                wordSet.add(texteAVerif.get(i));
+            }
+        }
+
+        //Compute levenDist with words in hashset
+        HashMap<String, HashMap> wordAndDistance2 = new HashMap<String, HashMap>();
+        for (int i = 0; i < ; i++) {
+
+        }
+
+
+        System.out.println(wordSet.toString());
+
         //Outer hashmap containing words, with its 5 closest contendants
         HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
         for (int i = 0; i < texteAVerif.size(); i++) {
@@ -61,7 +79,7 @@ public class Dico {
                 }
                 //System.out.println(wordAndDistance.toString());
                 Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
-                HashMap<String, Integer> top5Distances= new HashMap<String, Integer>();
+                HashMap<String, Integer> top5Distances = new HashMap<String, Integer>();
                 int n = 0;
                 for (Map.Entry<String, Integer> en : hm1.entrySet()) {
                     if (n == 5) {
@@ -73,10 +91,8 @@ public class Dico {
                 }
             }
         }
-        //for (String key : wordAndDistance.keySet()) {
-        //    highlight(key);
-        //}
-        System.out.println(wordAndDistance.toString());
+
+        //System.out.println(wordAndDistance.toString());
         return wordAndDistance;
     }
 

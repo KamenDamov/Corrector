@@ -3,10 +3,7 @@ package gui;
 import dictionnaire.Dico;
 
 import javax.swing.*;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Document;
-import javax.swing.text.Highlighter;
-import javax.swing.text.JTextComponent;
+import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -21,8 +18,17 @@ public class Corrector implements EventListener{
     //TODO
     // This class will produce new interface adding new textarea with buttons
     public String words;
-    public Corrector(String words){
+    public JTextArea ta;
+    Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
+    class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
+        public MyHighlightPainter(Color color) {
+            super(color);
+        }
+    }
+
+    public Corrector(String words, JTextArea ta){
         this.words = words;
+        this.ta = ta;
     }
 
     //Vectorize the words
@@ -42,17 +48,43 @@ public class Corrector implements EventListener{
         return toAppend;
     }
 
-    //Add highilighting method!!!!
-
-
-    public void updateDictToInterface(String word){
-        //TODO
-        // Change for word that is in the textarea currently
-        System.out.println(word);
-//        ta.replaceRange(word, startNewWord, endNewWord);
-//        taCorrect.selectAll();
-//        taCorrect.replaceSelection("");
-        //ta.insert(word, startNewWord);
+    //CReate a method that ouputs words not in dico
+    public void highlightTextArea() throws IOException {
+        for (String key : Dico.check(stringArrayList(words)).keySet()) {
+            highlight(key);
+        }
     }
 
+
+    //Add highilighting method!!!!
+    public void highlight(String pattern) {
+        // First remove all old highlights
+        removeHighlights(this.ta);
+
+        try {
+            Highlighter hilite = this.ta.getHighlighter();
+            //Document doc = this.ta.getDocument();
+            //String text = doc.getText(0, doc.getLength());
+            int pos = 0;
+
+            // Search for pattern
+            while ((pos = words.indexOf(pattern, pos)) >= 0) {
+                // Create highlighter using private painter and apply around pattern
+                hilite.addHighlight(pos, pos+pattern.length(), myHighlightPainter);
+                pos += pattern.length();
+            }
+        } catch (BadLocationException e) {
+        }
+    }
+
+    public void removeHighlights(JTextComponent textComp) {
+        Highlighter hilite = textComp.getHighlighter();
+        Highlighter.Highlight[] hilites = hilite.getHighlights();
+
+        for (int i=0; i<hilites.length; i++) {
+            if (hilites[i].getPainter() instanceof TextAreaHighlight.MyHighlightPainter) {
+                hilite.removeHighlight(hilites[i]);
+            }
+        }
+    }
 }

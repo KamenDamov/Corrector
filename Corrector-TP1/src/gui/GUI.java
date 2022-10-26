@@ -32,7 +32,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected int endNewWord;
     String word;
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
-    class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
+    static class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {
             super(color);
         }
@@ -466,8 +466,14 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
         if (e.getSource() == this.verif) {
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
-            Corrector corr = new Corrector(ta.getText());
+            Corrector corr = new Corrector(ta.getText(), ta);
             corr.stringArrayList(ta.getText());
+            //TODO
+            try {
+                corr.highlightTextArea();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             ta.addMouseListener( new MouseAdapter()
             {
                 public void mouseClicked(MouseEvent e)
@@ -544,8 +550,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             taCorrect.selectAll();
                             taCorrect.replaceSelection("");
                             //ta.insert(word, startNewWord);
-
-
                         }
                         catch (Exception e2) {}
                     }

@@ -546,10 +546,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             //TODO
                             // Add the words instead of hello
                             // Append to textarea
+                            System.out.println("The word :"+ word);
                             ta.replaceRange(word, startNewWord, endNewWord);
+                            //ta.insert(word, startNewWord);
                             taCorrect.selectAll();
                             taCorrect.replaceSelection("");
-                            //ta.insert(word, startNewWord);
+
                         }
                         catch (Exception e2) {}
                     }

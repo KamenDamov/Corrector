@@ -54,11 +54,25 @@ public class Dico {
 
         //Compute levenDist with words in hashset
         HashMap<String, HashMap> wordAndDistance2 = new HashMap<String, HashMap>();
-        for (int i = 0; i < ; i++) {
-
+        for(String key: wordSet){
+            HashMap<String, Integer> distances = new HashMap<String, Integer>();
+            for (int i = 0; i < dict.size(); i++) {
+                distances.put(dict.get(i), compute_Levenshtein_distanceDP(key, dict.get(i)));
+            }
+            Map<String, Integer> hm12 = sortByValue(distances);
+            HashMap<String, Integer> fin = new HashMap<String, Integer>();
+            int n = 0;
+            for (Map.Entry<String, Integer> en : hm12.entrySet()) {
+                if (n == 5) {
+                    break;
+                }
+                fin.put(en.getKey(), en.getValue());
+                n++;
+                wordAndDistance2.put(key, fin);
+            }
         }
-
-
+        return wordAndDistance2;
+        /*
         System.out.println(wordSet.toString());
 
         //Outer hashmap containing words, with its 5 closest contendants
@@ -93,7 +107,7 @@ public class Dico {
         }
 
         //System.out.println(wordAndDistance.toString());
-        return wordAndDistance;
+        return wordAndDistance;*/
     }
 
     public static int compute_Levenshtein_distanceDP(String str1,

@@ -17,7 +17,7 @@ public class Dico {
         for (int i = 0; i < textInput.size(); i++) {
             String[] strSplit = textInput.get(i).split(" ");
             for (int j = 0; j < strSplit.length; j++) {
-                modifiedDict.add(strSplit[j]);
+                modifiedDict.add(strSplit[j].toLowerCase());
             }
         }
         System.out.println(modifiedDict);

@@ -28,11 +28,11 @@ public class Corrector implements EventListener{
     }
 
     public Corrector(String words, JTextArea ta){
-        this.words = words;
-        this.ta = ta;
+        words = words;
+        ta = ta;
     }
 
-    private void clear() {
+    public void clear() {
         words = "";
         ta = new JTextArea();
     }

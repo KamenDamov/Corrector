@@ -294,7 +294,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             this.ecrireFichier();
         }
         if (e.getSource() == this.verif) {
-            System.out.println("New Test");
+            System.out.println("");
+            System.out.println("New Verification");
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText(), ta);
             corr.stringArrayList(corr.words);

@@ -9,7 +9,7 @@ public class Dico {
 
     public Dico(ArrayList<String> dict) {
         this.dict = dict;
-        //System.out.println(dict.toString());
+        System.out.println(dict.toString());
     }
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
     {
@@ -72,42 +72,6 @@ public class Dico {
             }
         }
         return wordAndDistance2;
-        /*
-        System.out.println(wordSet.toString());
-
-        //Outer hashmap containing words, with its 5 closest contendants
-        HashMap<String, HashMap> wordAndDistance = new HashMap<String, HashMap>();
-        for (int i = 0; i < texteAVerif.size(); i++) {
-            String toCheck = texteAVerif.get(i);
-            boolean seen = false;
-            HashMap<String, Integer> wordLevenDistanceMap = new HashMap<String, Integer>();
-            for (int j = 0; j < dict.size(); j++) {
-                if (compute_Levenshtein_distanceDP(toCheck, dict.get(j))==0) {
-                    seen = true;
-                }
-            }
-            if (seen == false){
-                //System.out.println(toCheck);
-                for (int k = 0; k < dict.size(); k++) {
-                    wordLevenDistanceMap.put(dict.get(k), compute_Levenshtein_distanceDP(toCheck, dict.get(k)));
-                }
-                //System.out.println(wordAndDistance.toString());
-                Map<String, Integer> hm1 = sortByValue(wordLevenDistanceMap);
-                HashMap<String, Integer> top5Distances = new HashMap<String, Integer>();
-                int n = 0;
-                for (Map.Entry<String, Integer> en : hm1.entrySet()) {
-                    if (n == 5) {
-                        break;
-                    }
-                    top5Distances.put(en.getKey(), en.getValue());
-                    n++;
-                    wordAndDistance.put(toCheck, top5Distances);
-                }
-            }
-        }
-
-        //System.out.println(wordAndDistance.toString());
-        return wordAndDistance;*/
     }
 
     public static int compute_Levenshtein_distanceDP(String str1,

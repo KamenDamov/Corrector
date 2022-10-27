@@ -23,23 +23,14 @@ public class Corrector implements EventListener{
         }
     }
 
-    public Corrector(){
-        this.clear();
-    }
-
     public Corrector(String words, JTextArea ta){
-        words = words;
-        ta = ta;
-    }
-
-    public void clear() {
-        words = "";
-        ta = new JTextArea();
+        this.words = words;
+        this.ta = ta;
     }
 
     //Vectorize the words
     public ArrayList<String> stringArrayList(String s) {
-        ArrayList<String> list = new ArrayList<>(Arrays.asList(words.split(" ")));
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(this.words.split(" ")));
         //System.out.println(list);
         return list;
     }
@@ -47,7 +38,7 @@ public class Corrector implements EventListener{
     public String updateInterfaceToDict(String word) throws IOException {
         String toAppend = "";
         //System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
-        Set keys = check(stringArrayList(words)).get(word).keySet();
+        Set keys = check(stringArrayList(this.words)).get(word).keySet();
         for (Object key: keys) {
             //System.out.println(key);
             toAppend += key.toString() + "\n";
@@ -57,7 +48,7 @@ public class Corrector implements EventListener{
 
     //CReate a method that ouputs words not in dico
     public void highlightTextArea() throws IOException {
-        Set<String> keys = check(stringArrayList(words)).keySet();
+        Set<String> keys = check(stringArrayList(this.words)).keySet();
         for (String key : keys) {
             highlight(key);
         }
@@ -76,9 +67,9 @@ public class Corrector implements EventListener{
             int pos = 0;
 
             // Search for pattern
-            while ((pos = words.indexOf(pattern, pos)) >= 0) {
+            while ((pos = this.words.indexOf(pattern, pos)) >= 0) {
                 // Create highlighter using private painter and apply around pattern
-                hilite.addHighlight(pos, pos+pattern.length(), myHighlightPainter);
+                hilite.addHighlight(pos, pos+pattern.length(), this.myHighlightPainter);
                 pos += pattern.length();
             }
         } catch (BadLocationException e) {

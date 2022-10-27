@@ -221,7 +221,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 var4.printStackTrace();
             }
 
-            return texte;
+            return this.texte;
         } else {
             int val = this.fc.showOpenDialog(this);
 
@@ -240,7 +240,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 var4.printStackTrace();
             }
 
-            return texteDico;
+            return this.texteDico;
         }
     }
 

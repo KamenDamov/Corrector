@@ -7,6 +7,23 @@ public class Dico {
 
     public static ArrayList<String> dict;
 
+    public static String textInput;
+
+    public Dico(String textInput){
+        this.textInput = textInput;
+        System.out.println(vectorize(textInput));
+    }
+
+    public ArrayList<String> vectorize(String textInput) {
+        String[] strSplit = this.textInput.split(" ");
+
+        // Now convert string into ArrayList
+        ArrayList<String> strList = new ArrayList<String>(
+                Arrays.asList(strSplit));
+        System.out.println(strList);
+        return strList;
+    }
+
     public Dico(ArrayList<String> dict) {
         this.dict = dict;
         System.out.println(dict.toString());

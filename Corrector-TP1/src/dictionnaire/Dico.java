@@ -7,26 +7,21 @@ public class Dico {
 
     public static ArrayList<String> dict;
 
-    public static String textInput;
-
-    public Dico(String textInput){
-        this.textInput = textInput;
-        System.out.println(vectorize(textInput));
-    }
-
-    public ArrayList<String> vectorize(String textInput) {
-        String[] strSplit = this.textInput.split(" ");
-
-        // Now convert string into ArrayList
-        ArrayList<String> strList = new ArrayList<String>(
-                Arrays.asList(strSplit));
-        System.out.println(strList);
-        return strList;
-    }
-
     public Dico(ArrayList<String> dict) {
-        this.dict = dict;
-        System.out.println(dict.toString());
+        this.dict = vectorize(dict);
+        System.out.println(this.dict.toString());
+    }
+
+    public ArrayList<String> vectorize(ArrayList<String> textInput) {
+        ArrayList<String> modifiedDict = new ArrayList<String>();
+        for (int i = 0; i < textInput.size(); i++) {
+            String[] strSplit = textInput.get(i).split(" ");
+            for (int j = 0; j < strSplit.length; j++) {
+                modifiedDict.add(strSplit[j]);
+            }
+        }
+        System.out.println(modifiedDict);
+        return modifiedDict;
     }
     public static HashMap<String, Integer> sortByValue(HashMap<String, Integer> hm)
     {

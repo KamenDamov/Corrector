@@ -299,7 +299,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText(), ta);
             corr.stringArrayList(corr.words);
-            //TODO
             try {
                 corr.highlightTextArea();
             } catch (IOException ex) {
@@ -309,6 +308,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 public void mouseClicked(MouseEvent e) {
                     if (SwingUtilities.isRightMouseButton(e)) {
                         try {
+
+                            //TODO
                             int offset = ta.viewToModel(e.getPoint());
                             //System.out.println( ta.modelToView( offset ) );
                             int start = Utilities.getWordStart(ta, offset);

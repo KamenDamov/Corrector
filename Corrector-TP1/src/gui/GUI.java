@@ -30,6 +30,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected JTextArea taCorrect;
     protected int startNewWord;
     protected int endNewWord;
+    protected String word;
     //protected String word;
 
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
@@ -292,6 +293,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             this.ecrireFichier();
         }
         if (e.getSource() == this.verif) {
+            System.out.println("New Test");
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText(), ta);
             corr.stringArrayList(corr.words);
@@ -315,7 +317,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             int end = Utilities.getWordEnd(ta, offset);
                             startNewWord = Utilities.getWordStart(ta,offset);
                             endNewWord = Utilities.getWordEnd(ta, offset);
-                            String word = ta.getDocument().getText(start, end-start);
+                            word = ta.getDocument().getText(start, end-start);
                             //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(ta, offset);
                             int rowEnd = Utilities.getRowEnd(ta, offset);
@@ -363,7 +365,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             //System.out.println( ta.modelToView( offset ) );
                             int start = Utilities.getWordStart(taCorrect,offset);
                             int end = Utilities.getWordEnd(taCorrect, offset);
-                            String word = taCorrect.getDocument().getText(start, end-start);
+                            word = taCorrect.getDocument().getText(start, end-start);
                             //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(taCorrect, offset);
                             int rowEnd = Utilities.getRowEnd(taCorrect, offset);
@@ -378,9 +380,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             System.out.println(endNewWord);
                             ta.replaceRange(word, startNewWord, endNewWord);
                             //ta.insert(word, startNewWord);
-                            taCorrect.selectAll();
-                            taCorrect.replaceSelection("");
-
+                            //taCorrect.selectAll();
+                            //taCorrect.replaceSelection("");
                         }
                         catch (Exception e2) {}
                     }

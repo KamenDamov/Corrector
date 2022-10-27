@@ -1,7 +1,6 @@
 package gui;
 
 import dictionnaire.Dico;
-import jdk.internal.loader.URLClassPath;
 
 import javax.swing.*;
 import javax.swing.event.CaretEvent;
@@ -10,10 +9,7 @@ import javax.swing.text.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-import java.lang.reflect.Array;
-import java.nio.charset.CoderResult;
 import java.util.*;
-import java.util.List;
 
 public class GUI extends JFrame implements EventListener, ActionListener {
 
@@ -270,6 +266,11 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
     }
 
+    public Corrector corrector (Corrector corr, JTextArea ta){
+        corr = new Corrector(ta.getText(), ta);
+        return corr;
+    }
+
     public ArrayList<String> stringArrayList(String s){
         ArrayList<String> list = new ArrayList<>(Arrays.asList(s.split(" ")));
         return list;
@@ -298,6 +299,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             System.out.println("New Verification");
             //texteAVerif = this.vectorize(stringArrayList(ta.getText()), 'o');
             Corrector corr = new Corrector(ta.getText(), ta);
+            //Corrector corr = new Corrector(ta.getText(), ta);
             corr.stringArrayList(corr.words);
             try {
                 corr.highlightTextArea();

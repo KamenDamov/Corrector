@@ -303,21 +303,17 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
-            ta.addMouseListener( new MouseAdapter()
-            {
-                public void mouseClicked(MouseEvent e)
-                {
-                    if ( SwingUtilities.isRightMouseButton(e) )
-                    {
-                        try
-                        {
-                            int offset = ta.viewToModel( e.getPoint() );
+            ta.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
+                        try {
+                            int offset = ta.viewToModel(e.getPoint());
                             //System.out.println( ta.modelToView( offset ) );
-                            int start = Utilities.getWordStart(ta,offset);
+                            int start = Utilities.getWordStart(ta, offset);
                             int end = Utilities.getWordEnd(ta, offset);
-                            startNewWord = Utilities.getWordStart(ta,offset);
+                            startNewWord = Utilities.getWordStart(ta, offset);
                             endNewWord = Utilities.getWordEnd(ta, offset);
-                            word = ta.getDocument().getText(start, end-start);
+                            word = ta.getDocument().getText(start, end - start);
                             //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(ta, offset);
                             int rowEnd = Utilities.getRowEnd(ta, offset);
@@ -325,47 +321,38 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             //System.out.println( "Row end   offset: " + rowEnd );
                             ta.select(rowStart, rowEnd);
                             taCorrect.append(corr.updateInterfaceToDict(word));
-                        }
-                        catch (Exception e2) {}
+                        } catch (Exception e2) {}
                     }
                     repaint();
                 }
             });
-            ta.addCaretListener( new CaretListener()
-            {
-                public void caretUpdate(CaretEvent e)
-                {
+            ta.addCaretListener(new CaretListener() {
+                public void caretUpdate(CaretEvent e) {
                     int caretPosition = ta.getCaretPosition();
                     Element root = ta.getDocument().getDefaultRootElement(
                     );
-                    int row = root.getElementIndex( caretPosition );
-                    int column = caretPosition - root.getElement( row ).getStartOffset();
+                    int row = root.getElementIndex(caretPosition);
+                    int column = caretPosition - root.getElement(row).getStartOffset();
                     //System.out.println( "Row   : " + ( row + 1 ) );
                     //System.out.println( "Column: " + ( column + 1 ) );
                 }
             });
 
-            ta.addKeyListener( new KeyAdapter()
-            {
-                public void keyPressed(KeyEvent e)
-                {
+            ta.addKeyListener(new KeyAdapter() {
+                public void keyPressed(KeyEvent e) {
                     //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
                 }
             });
 
-            taCorrect.addMouseListener( new MouseAdapter()
-            {
-                public void mouseClicked(MouseEvent e)
-                {
-                    if ( SwingUtilities.isRightMouseButton(e) )
-                    {
-                        try
-                        {
-                            int offset = taCorrect.viewToModel( e.getPoint() );
+            taCorrect.addMouseListener(new MouseAdapter() {
+                public void mouseClicked(MouseEvent e) {
+                    if (SwingUtilities.isRightMouseButton(e)) {
+                        try {
+                            int offset = taCorrect.viewToModel(e.getPoint());
                             //System.out.println( ta.modelToView( offset ) );
-                            int start = Utilities.getWordStart(taCorrect,offset);
+                            int start = Utilities.getWordStart(taCorrect, offset);
                             int end = Utilities.getWordEnd(taCorrect, offset);
-                            word = taCorrect.getDocument().getText(start, end-start);
+                            word = taCorrect.getDocument().getText(start, end - start);
                             //System.out.println( "Selected word: " + word);
                             int rowStart = Utilities.getRowStart(taCorrect, offset);
                             int rowEnd = Utilities.getRowEnd(taCorrect, offset);
@@ -375,38 +362,34 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                             //TODO
                             // Add the words instead of hello
                             // Append to textarea
-                            System.out.println("The word :"+ word);
+                            System.out.println("The word :" + word);
                             System.out.println(startNewWord);
                             System.out.println(endNewWord);
                             ta.replaceRange(word, startNewWord, endNewWord);
                             //ta.insert(word, startNewWord);
-                            //taCorrect.selectAll();
-                            //taCorrect.replaceSelection("");
+                            taCorrect.selectAll();
+                            taCorrect.replaceSelection("");
+                        } catch (Exception e2) {
                         }
-                        catch (Exception e2) {}
                     }
                 }
             });
 
-            taCorrect.addCaretListener( new CaretListener()
-            {
-                public void caretUpdate(CaretEvent e)
-                {
+            taCorrect.addCaretListener(new CaretListener() {
+                public void caretUpdate(CaretEvent e) {
                     int caretPosition = taCorrect.getCaretPosition();
                     Element root = taCorrect.getDocument().getDefaultRootElement(
                     );
-                    int row = root.getElementIndex( caretPosition );
-                    int column = caretPosition - root.getElement( row ).getStartOffset();
+                    int row = root.getElementIndex(caretPosition);
+                    int column = caretPosition - root.getElement(row).getStartOffset();
                     //System.out.println( "Row   : " + ( row + 1 ) );
                     //System.out.println( "Column: " + ( column + 1 ) );
 
                 }
             });
 
-            taCorrect.addKeyListener( new KeyAdapter()
-            {
-                public void keyPressed(KeyEvent e)
-                {
+            taCorrect.addKeyListener(new KeyAdapter() {
+                public void keyPressed(KeyEvent e) {
                     //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
                 }
             });

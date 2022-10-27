@@ -23,9 +23,18 @@ public class Corrector implements EventListener{
         }
     }
 
+    public Corrector(){
+        this.clear();
+    }
+
     public Corrector(String words, JTextArea ta){
         this.words = words;
         this.ta = ta;
+    }
+
+    private void clear() {
+        words = "";
+        ta = new JTextArea();
     }
 
     //Vectorize the words
@@ -48,7 +57,8 @@ public class Corrector implements EventListener{
 
     //CReate a method that ouputs words not in dico
     public void highlightTextArea() throws IOException {
-        for (String key : Dico.check(stringArrayList(words)).keySet()) {
+        Set<String> keys = check(stringArrayList(words)).keySet();
+        for (String key : keys) {
             highlight(key);
         }
     }

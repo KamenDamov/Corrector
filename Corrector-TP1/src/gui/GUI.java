@@ -394,6 +394,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
                 }
             });
+            //corr = null;
         }
     }
 }

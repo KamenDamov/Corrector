@@ -274,6 +274,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             //texteDico = this.vectorize(chargerFichier('n'), 'n');
             texteDico = chargerFichier('n');
             //System.out.println(texteDico);
+            //dico.createDico(texteDico)
             Dico dict = new Dico(texteDico);
             //dictio = dico.vectorize(chargerFichier('n'));
         }

@@ -12,6 +12,10 @@ public class Dico {
         System.out.println(this.dict.toString());
     }
 
+    public Dico(){
+
+    }
+
     public ArrayList<String> vectorize(ArrayList<String> textInput) {
         ArrayList<String> modifiedDict = new ArrayList<String>();
         for (int i = 0; i < textInput.size(); i++) {

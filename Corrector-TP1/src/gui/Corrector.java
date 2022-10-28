@@ -11,10 +11,10 @@ import java.util.*;
 
 import static dictionnaire.Dico.*;
 
-public class Corrector implements EventListener{
+public class Corrector {
     //TODO
     // This class will produce new interface adding new textarea with buttons
-    public String words;
+    //public String words;
     public JTextArea ta;
     Set keys;
 
@@ -25,22 +25,26 @@ public class Corrector implements EventListener{
         }
     }
 
+    public Corrector(){
+
+    }
+/*
     public Corrector(String words, JTextArea ta){
         this.words = words;
         this.ta = ta;
-    }
+    }*/
 
     //Vectorize the words
-    public ArrayList<String> stringArrayList(String s) {
-        ArrayList<String> list = new ArrayList<>(Arrays.asList(this.words.split(" ")));
+    public ArrayList<String> stringArrayList(String words) {
+        ArrayList<String> list = new ArrayList<>(Arrays.asList(words.split(" ")));
         //System.out.println(list);
         return list;
     }
 
-    public String updateInterfaceToDict(String word) throws IOException {
+    public String updateInterfaceToDict(String word, String words) throws IOException {
         String toAppend = "";
         //System.out.println(Dico.check(stringArrayList(words)).get(word).keySet());
-        Set keys = check(stringArrayList(this.words)).get(word).keySet();
+        Set keys = check(stringArrayList(words)).get(word).keySet();
         for (Object key: keys) {
             //System.out.println(key);
             toAppend += key.toString() + "\n";
@@ -49,27 +53,27 @@ public class Corrector implements EventListener{
     }
 
     //CReate a method that ouputs words not in dico
-    public void highlightTextArea() throws IOException {
-        Set<String> keys = check(stringArrayList(this.words)).keySet();
+    public void highlightTextArea(String words, JTextArea ta) throws IOException {
+        Set<String> keys = check(stringArrayList(words)).keySet();
         for (String key : keys) {
-            highlight(key);
+            highlight(key, ta, words);
         }
     }
 
 
     //Add highilighting method!!!!
-    public void highlight(String pattern) {
+    public void highlight(String pattern, JTextArea ta, String words) {
         // First remove all old highlights
-        removeHighlights(this.ta);
+        removeHighlights(ta);
 
         try {
-            Highlighter hilite = this.ta.getHighlighter();
+            Highlighter hilite = ta.getHighlighter();
             //Document doc = this.ta.getDocument();
             //String text = doc.getText(0, doc.getLength());
             int pos = 0;
 
             // Search for pattern
-            while ((pos = this.words.indexOf(pattern, pos)) >= 0) {
+            while ((pos = words.indexOf(pattern, pos)) >= 0) {
                 // Create highlighter using private painter and apply around pattern
                 hilite.addHighlight(pos, pos+pattern.length(), this.myHighlightPainter);
                 pos += pattern.length();

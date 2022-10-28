@@ -16,6 +16,8 @@ public class Corrector implements EventListener{
     // This class will produce new interface adding new textarea with buttons
     public String words;
     public JTextArea ta;
+    Set keys;
+
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {

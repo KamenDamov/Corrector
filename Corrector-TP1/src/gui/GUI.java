@@ -30,10 +30,17 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected int endNewWord;
     protected JScrollPane sp;
     protected JMenu menu;
+    protected JMenuItem word2;
+
     String word;
     String word1;
     Corrector corr;
     Dico dico;
+    private JMenuBar menuBar = new JMenuBar(); // Window menu bar
+    private JMenuItem newItem, openItem, closeItem, saveItem, saveAsItem, printItem;
+    private JRadioButtonMenuItem lineItem, rectangleItem, circleItem;
+    private JCheckBoxMenuItem redItem, yellowItem;
+
 
     //TODO
     // Create a method that will only call the function
@@ -46,12 +53,20 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     }
 
     public GUI() {
+        setJMenuBar(menuBar);
+        JMenu fileMenu = new JMenu("File");
+        JMenu elementMenu = new JMenu("Elements");
+        newItem = fileMenu.add("New");
+        openItem = fileMenu.add("Open");
+        closeItem = fileMenu.add("Close");
         JPanel haut = new JPanel();
         JPanel bas = new JPanel();
         JPanel est = new JPanel();
         this.add(haut, "North");
         this.add(bas, "Center");
         this.add(est, "East");
+        this.menu = new JMenu();
+        this.word2 = new JMenuItem("Bonjour");
         this.ta = new JTextArea("textarea", 300, 30);
         this.sp = new JScrollPane(ta,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -74,7 +89,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
         this.verif.addActionListener(this);
-        this.menu.addActionListener(this);
         this.corr = new Corrector();
         this.dico = new Dico();
         /*
@@ -94,6 +108,10 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     try {
                         //TODO
+                        System.out.println("Here");
+                        menu = new JMenu("Allo");
+                        word2 = new JMenuItem("Bonjour");
+                        menu.add(word2);
                         int offset = ta.viewToModel(e.getPoint());
                         //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(ta, offset);

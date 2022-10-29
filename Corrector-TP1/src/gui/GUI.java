@@ -104,9 +104,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //System.out.println( "Row start offset: " + rowStart );
                         //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
-                        System.out.println("Allo");
+                        System.out.println(word);
                         //System.out.println(keepObjects.get(0).toString());
-                        taCorrect.append(corr.updateInterfaceToDict(word, ta.getText()));
+                        taCorrect.append(corr.updateInterfaceToDict(word.replaceAll("\\p{Punct}", "").toLowerCase(), ta.getText()));
 
                     } catch (Exception e2) {}
                 }
@@ -267,8 +267,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         if (e.getSource() == this.chooser) {
             //texte = this.vectorize(chargerFichier('c'), 'n');
             texte = chargerFichier('t');
-            texte = dico.vectorize(texte);
+            //texte = dico.vectorize(texte);
             //System.out.println(texte.toString());
+            System.out.println(texte.toString());
             this.afficher(texte);
         }
 

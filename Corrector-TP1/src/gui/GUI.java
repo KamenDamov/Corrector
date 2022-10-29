@@ -28,6 +28,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected JTextArea taCorrect;
     protected int startNewWord;
     protected int endNewWord;
+    protected JScrollPane sp;
+    protected JMenu menu;
     String word;
     String word1;
     Corrector corr;
@@ -35,8 +37,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     //TODO
     // Create a method that will only call the function
-
-    int n = 0;
 
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     static class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
@@ -53,7 +53,10 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.add(bas, "Center");
         this.add(est, "East");
         this.ta = new JTextArea("textarea", 300, 30);
-        bas.add(this.ta);
+        this.sp = new JScrollPane(ta,
+                JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        this.menu = new JMenu();
+        bas.add(this.sp);
         this.chooser = new JButton("choisir");
         haut.add(this.chooser);
         this.dictionnaire = new JButton("dictionnaire");
@@ -71,7 +74,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.dictionnaire.addActionListener(this);
         this.ecrire.addActionListener(this);
         this.verif.addActionListener(this);
-        System.out.println("Why the hell do I appear twice");
+        this.menu.addActionListener(this);
         this.corr = new Corrector();
         this.dico = new Dico();
         /*

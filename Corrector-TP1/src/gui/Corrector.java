@@ -12,8 +12,7 @@ import java.util.*;
 import static dictionnaire.Dico.*;
 
 public class Corrector {
-    //TODO
-    // This class will produce new interface adding new textarea with buttons
+
     //public String words;
     public JTextArea ta;
     Dico d = new Dico();
@@ -26,14 +25,7 @@ public class Corrector {
         }
     }
 
-    public Corrector(){
-
-    }
-/*
-    public Corrector(String words, JTextArea ta){
-        this.words = words;
-        this.ta = ta;
-    }*/
+    public Corrector(){}
 
     //Vectorize the words
     public ArrayList<String> stringArrayList(String words) {
@@ -69,8 +61,6 @@ public class Corrector {
 
         try {
             Highlighter hilite = ta.getHighlighter();
-            //Document doc = this.ta.getDocument();
-            //String text = doc.getText(0, doc.getLength());
             int pos = 0;
 
             // Search for pattern

@@ -56,7 +56,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.add(est, "East");
         this.menu = new JMenu();
         this.word2 = new JMenuItem("Bonjour");
-        this.ta = new JTextArea("textarea", 300, 30);
+        this.ta = new JTextArea("textarea", 500, 50);
         this.sp = new JScrollPane(ta,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
         this.menu = new JMenu();
@@ -80,11 +80,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.verif.addActionListener(this);
         this.corr = new Corrector();
         this.dico = new Dico();
-        /*
-        this.scrollPane = new JScrollPane(ta);
-        getContentPane().add( scrollPane );
-        getContentPane().add( new JTextField(10),BorderLayout.SOUTH );
-    */
+
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(3, 3));
@@ -97,6 +93,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     try {
                         //TODO
+                        taCorrect.selectAll();
+                        taCorrect.replaceSelection("");
                         System.out.println("Here");
                         menu = new JMenu("Allo");
                         word2 = new JMenuItem("Bonjour");
@@ -146,6 +144,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     try {
+
                         int offset = taCorrect.viewToModel(e.getPoint());
                         //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(taCorrect, offset);
@@ -163,13 +162,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         System.out.println("The word :" + word1);
                         System.out.println(startNewWord);
                         System.out.println(endNewWord);
-                        if (word1 != ""){
-                            ta.replaceRange(word1, startNewWord, endNewWord);
-                            taCorrect.selectAll();
-                            taCorrect.replaceSelection("");
-                        }else{
-                            System.out.println("Abort Mission");
-                        }
+                        ta.replaceRange(word1, startNewWord, endNewWord);
+                        taCorrect.selectAll();
+                        taCorrect.replaceSelection("");
                         //ta.replaceRange(word1, startNewWord, endNewWord);
                         //ta.insert(word, startNewWord);
                         //taCorrect.selectAll();

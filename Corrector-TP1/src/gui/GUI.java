@@ -31,7 +31,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     String word;
     String word1;
     Corrector corr;
-    //Dico dico = new Dico();
+    Dico dico;
 
     //TODO
     // Create a method that will only call the function
@@ -73,6 +73,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.verif.addActionListener(this);
         System.out.println("Why the hell do I appear twice");
         this.corr = new Corrector();
+        this.dico = new Dico();
         /*
         this.scrollPane = new JScrollPane(ta);
         getContentPane().add( scrollPane );
@@ -272,11 +273,15 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
         if (e.getSource() == this.dictionnaire) {
             //texteDico = this.vectorize(chargerFichier('n'), 'n');
+            texteDico.clear();
             texteDico = chargerFichier('n');
             //System.out.println(texteDico);
             //dico.createDico(texteDico)
-            Dico dict = new Dico(texteDico);
+            //Dico dict = new Dico(texteDico);
             //dictio = dico.vectorize(chargerFichier('n'));
+            //dico.clearDico();
+            System.out.println(texteDico.toString());
+            dico.readDico(texteDico);
         }
 
         if (e.getSource() == this.ecrire) {

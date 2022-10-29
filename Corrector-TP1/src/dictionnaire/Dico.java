@@ -1,11 +1,13 @@
 package dictionnaire;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.*;
 
 public class Dico {
 
     public static ArrayList<String> dict;
+    public static ArrayList<String> dico = new ArrayList<>();
 
     public Dico(ArrayList<String> dict) {
         this.dict = vectorize(dict);
@@ -14,6 +16,18 @@ public class Dico {
 
     public Dico(){
 
+    }
+
+    public ArrayList<String>readDico(ArrayList<String> incomingDico){
+        dico.clear();
+        this.dico = vectorize(incomingDico);
+        //System.out.println(this.dico.toString());
+        return incomingDico;
+    }
+
+    public void clearDico() {
+        System.out.println("je suis ici");
+        this.dico.clear();
     }
 
     public ArrayList<String> vectorize(ArrayList<String> textInput) {
@@ -63,7 +77,7 @@ public class Dico {
         // if not find 5 closest
         HashSet<String> wordSet = new HashSet<String>();
         for (int i = 0; i < texteAVerif.size(); i++) {
-            if (!dict.contains(texteAVerif.get(i))){
+            if (!dico.contains(texteAVerif.get(i))){
                 wordSet.add(texteAVerif.get(i));
             }
         }
@@ -72,8 +86,8 @@ public class Dico {
         HashMap<String, HashMap> wordAndDistance2 = new HashMap<String, HashMap>();
         for(String key: wordSet){
             HashMap<String, Integer> distances = new HashMap<String, Integer>();
-            for (int i = 0; i < dict.size(); i++) {
-                distances.put(dict.get(i), compute_Levenshtein_distanceDP(key, dict.get(i)));
+            for (int i = 0; i < dico.size(); i++) {
+                distances.put(dico.get(i), compute_Levenshtein_distanceDP(key, dico.get(i)));
             }
             Map<String, Integer> hm12 = sortByValue(distances);
             HashMap<String, Integer> fin = new HashMap<String, Integer>();
@@ -135,4 +149,6 @@ public class Dico {
         return Arrays.stream(nums).min().orElse(
                 Integer.MAX_VALUE);
     }
+
+
 }

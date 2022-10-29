@@ -36,11 +36,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     String word1;
     Corrector corr;
     Dico dico;
-    private JMenuBar menuBar = new JMenuBar(); // Window menu bar
-    private JMenuItem newItem, openItem, closeItem, saveItem, saveAsItem, printItem;
-    private JRadioButtonMenuItem lineItem, rectangleItem, circleItem;
-    private JCheckBoxMenuItem redItem, yellowItem;
-
 
     //TODO
     // Create a method that will only call the function
@@ -53,12 +48,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     }
 
     public GUI() {
-        setJMenuBar(menuBar);
-        JMenu fileMenu = new JMenu("File");
-        JMenu elementMenu = new JMenu("Elements");
-        newItem = fileMenu.add("New");
-        openItem = fileMenu.add("Open");
-        closeItem = fileMenu.add("Close");
         JPanel haut = new JPanel();
         JPanel bas = new JPanel();
         JPanel est = new JPanel();

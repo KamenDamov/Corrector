@@ -53,7 +53,6 @@ public class Corrector {
         }
     }
 
-
     //Add highilighting method!!!!
     public void highlight(String pattern, JTextArea ta, String words) {
         // First remove all old highlights

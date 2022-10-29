@@ -11,7 +11,6 @@ public class Dico {
 
     public Dico(ArrayList<String> dict) {
         this.dict = vectorize(dict);
-        System.out.println(this.dict.toString());
     }
 
     public Dico(){

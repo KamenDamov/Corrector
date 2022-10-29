@@ -25,16 +25,12 @@ public class Dico {
         return incomingDico;
     }
 
-    public void clearDico() {
-        System.out.println("je suis ici");
-        this.dico.clear();
-    }
-
     public ArrayList<String> vectorize(ArrayList<String> textInput) {
         ArrayList<String> modifiedDict = new ArrayList<String>();
         for (int i = 0; i < textInput.size(); i++) {
             String[] strSplit = textInput.get(i).split(" ");
             for (int j = 0; j < strSplit.length; j++) {
+                strSplit[j] = strSplit[j].replaceAll("\\p{Punct}","");
                 modifiedDict.add(strSplit[j].toLowerCase());
             }
         }

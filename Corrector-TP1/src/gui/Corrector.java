@@ -16,6 +16,7 @@ public class Corrector {
     // This class will produce new interface adding new textarea with buttons
     //public String words;
     public JTextArea ta;
+    Dico d = new Dico();
     Set keys;
 
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
@@ -54,7 +55,7 @@ public class Corrector {
 
     //CReate a method that ouputs words not in dico
     public void highlightTextArea(String words, JTextArea ta) throws IOException {
-        Set<String> keys = check(stringArrayList(words)).keySet();
+        Set<String> keys = check(d.vectorize(stringArrayList(words))).keySet();
         for (String key : keys) {
             highlight(key, ta, words);
         }

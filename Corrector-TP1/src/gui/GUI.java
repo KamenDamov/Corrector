@@ -106,7 +106,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         ta.select(rowStart, rowEnd);
                         System.out.println(word);
                         //System.out.println(keepObjects.get(0).toString());
-                        taCorrect.append(corr.updateInterfaceToDict(word.replaceAll("\\p{Punct}", "").toLowerCase(), ta.getText()));
+                        taCorrect.append(corr.updateInterfaceToDict(word, ta.getText()));
 
                     } catch (Exception e2) {}
                 }

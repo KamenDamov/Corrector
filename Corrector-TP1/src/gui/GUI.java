@@ -26,6 +26,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected JButton ecrire;
     protected JButton verif;
     protected JTextArea taCorrect;
+    //protected DefaultListModel<String> l1;
+    protected JList<String> list;
     protected int startNewWord;
     protected int endNewWord;
     protected JScrollPane sp;
@@ -56,10 +58,9 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         this.add(est, "East");
         this.menu = new JMenu();
         this.word2 = new JMenuItem("Bonjour");
-        this.ta = new JTextArea("textarea", 500, 50);
+        this.ta = new JTextArea("textarea", 700, 70);
         this.sp = new JScrollPane(ta,
                 JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-        this.menu = new JMenu();
         bas.add(this.sp);
         this.chooser = new JButton("choisir");
         haut.add(this.chooser);
@@ -71,6 +72,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         haut.add(verif);
         this.taCorrect = new JTextArea("", 300, 30);
         est.add(this.taCorrect);
+        //this.list= new JList<>();
+        //est.add(this.list);
         this.fc = new JFileChooser();
         this.texte = new ArrayList();
         this.texteDico = new ArrayList<>();
@@ -87,7 +90,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         setVisible(true);
         pack();
 
-
         ta.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
@@ -96,9 +98,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         taCorrect.selectAll();
                         taCorrect.replaceSelection("");
                         System.out.println("Here");
-                        menu = new JMenu("Allo");
-                        word2 = new JMenuItem("Bonjour");
-                        menu.add(word2);
                         int offset = ta.viewToModel(e.getPoint());
                         //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(ta, offset);
@@ -112,9 +111,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         //System.out.println( "Row start offset: " + rowStart );
                         //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
-                        System.out.println(word);
+                        //System.out.println(word);
                         //System.out.println(keepObjects.get(0).toString());
                         taCorrect.append(corr.updateInterfaceToDict(word, ta.getText()));
+                        //corr.updateInterfaceToDict(word, ta.getText()/*, ta, startNewWord, endNewWord*/);
+                        //System.out.println(corr.val);
+                        //corr.accessTheWord();
 
                     } catch (Exception e2) {}
                 }
@@ -142,9 +144,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
         taCorrect.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
-                if (SwingUtilities.isRightMouseButton(e)) {
+                if (SwingUtilities.isLeftMouseButton(e)) {
                     try {
-
                         int offset = taCorrect.viewToModel(e.getPoint());
                         //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(taCorrect, offset);
@@ -261,10 +262,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             }
         }
     }
-    public ArrayList<String> stringArrayList(String s){
-        ArrayList<String> list = new ArrayList<>(Arrays.asList(s.split(" ")));
-        return list;
-    }
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.chooser) {
@@ -273,6 +270,8 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             //texte = dico.vectorize(texte);
             //System.out.println(texte.toString());
             System.out.println(texte.toString());
+            ta.selectAll();
+            ta.replaceSelection("");
             this.afficher(texte);
         }
 
@@ -280,11 +279,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             //texteDico = this.vectorize(chargerFichier('n'), 'n');
             texteDico.clear();
             texteDico = chargerFichier('n');
-            //System.out.println(texteDico);
-            //dico.createDico(texteDico)
-            //Dico dict = new Dico(texteDico);
-            //dictio = dico.vectorize(chargerFichier('n'));
-            //dico.clearDico();
             System.out.println(texteDico.toString());
             dico.readDico(texteDico);
         }

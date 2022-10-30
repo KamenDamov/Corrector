@@ -27,7 +27,6 @@ les mots qui ne se retrouvent pas dans le dictionnaire sont surlignés en rouge.
 similaires en cliquant à droite sur la souris. On peut ensuite seléctionner un mot proposé
 en cliquant à gauche sur la souris, ce qui placera le mot choisit dans le texte.
 
-
 Survol structurel:
 Ce programme contient 3 classes:
     - GUI: Déclaration des éléments graphiques de l'interface. Inclut des méthodes pour charger, sauvegarder, et afficher.
@@ -36,13 +35,13 @@ Ce programme contient 3 classes:
         de vectorisation, de recherche des mots les plus proches.
     - Corrector: Corrige les mots et se charge de produire les données à ajouter à l'interface. Inclut également les
         méthodes nécéssairse pour surligner le texte.
-    -
+
 
 */
 
 public class Main {
     public static void main(String[] args) {
-        //Declaring GUI
+        //Paritr le programme
         gui.GUI g = new gui.GUI();
     }
 }

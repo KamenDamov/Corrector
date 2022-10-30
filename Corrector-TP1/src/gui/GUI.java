@@ -18,15 +18,12 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     protected ArrayList<String> texte;
     protected ArrayList<String> texteDico;
     protected ArrayList<String> texteAVerif;
-
-    protected ArrayList<String> textArea;
     protected JTextArea ta;
     protected JButton chooser;
     protected JButton dictionnaire;
     protected JButton ecrire;
     protected JButton verif;
     protected JTextArea taCorrect;
-    //protected DefaultListModel<String> l1;
     protected JList<String> list;
     protected int startNewWord;
     protected int endNewWord;
@@ -91,9 +88,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                     try {
                         taCorrect.selectAll();
                         taCorrect.replaceSelection("");
-                        System.out.println("Here");
                         int offset = ta.viewToModel(e.getPoint());
-                        //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(ta, offset);
                         int end = Utilities.getWordEnd(ta, offset);
                         startNewWord = Utilities.getWordStart(ta, offset);
@@ -122,7 +117,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
         ta.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
         });
 

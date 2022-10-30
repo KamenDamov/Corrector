@@ -39,9 +39,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
     Corrector corr;
     Dico dico;
 
-    //TODO
-    // Create a method that will only call the function
-
     Highlighter.HighlightPainter myHighlightPainter = new GUI.MyHighlightPainter(Color.red);
     static class MyHighlightPainter extends DefaultHighlighter.DefaultHighlightPainter {
         public MyHighlightPainter(Color color) {
@@ -72,8 +69,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         haut.add(verif);
         this.taCorrect = new JTextArea("", 300, 30);
         est.add(this.taCorrect);
-        //this.list= new JList<>();
-        //est.add(this.list);
         this.fc = new JFileChooser();
         this.texte = new ArrayList();
         this.texteDico = new ArrayList<>();
@@ -94,7 +89,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
             public void mouseClicked(MouseEvent e) {
                 if (SwingUtilities.isRightMouseButton(e)) {
                     try {
-                        //TODO
                         taCorrect.selectAll();
                         taCorrect.replaceSelection("");
                         System.out.println("Here");
@@ -105,18 +99,10 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                         startNewWord = Utilities.getWordStart(ta, offset);
                         endNewWord = Utilities.getWordEnd(ta, offset);
                         word = ta.getDocument().getText(start, end - start);
-                        //System.out.println( "Selected word: " + word);
                         int rowStart = Utilities.getRowStart(ta, offset);
                         int rowEnd = Utilities.getRowEnd(ta, offset);
-                        //System.out.println( "Row start offset: " + rowStart );
-                        //System.out.println( "Row end   offset: " + rowEnd );
                         ta.select(rowStart, rowEnd);
-                        //System.out.println(word);
-                        //System.out.println(keepObjects.get(0).toString());
                         taCorrect.append(corr.updateInterfaceToDict(word, ta.getText()));
-                        //corr.updateInterfaceToDict(word, ta.getText()/*, ta, startNewWord, endNewWord*/);
-                        //System.out.println(corr.val);
-                        //corr.accessTheWord();
 
                     } catch (Exception e2) {}
                 }
@@ -131,8 +117,6 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 );
                 int row = root.getElementIndex(caretPosition);
                 int column = caretPosition - root.getElement(row).getStartOffset();
-                //System.out.println( "Row   : " + ( row + 1 ) );
-                //System.out.println( "Column: " + ( column + 1 ) );
             }
         });
 
@@ -147,29 +131,15 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 if (SwingUtilities.isLeftMouseButton(e)) {
                     try {
                         int offset = taCorrect.viewToModel(e.getPoint());
-                        //System.out.println( ta.modelToView( offset ) );
                         int start = Utilities.getWordStart(taCorrect, offset);
                         int end = Utilities.getWordEnd(taCorrect, offset);
                         word1 = taCorrect.getDocument().getText(start, end - start);
-                        //System.out.println( "Selected word: " + word);
                         int rowStart = Utilities.getRowStart(taCorrect, offset);
                         int rowEnd = Utilities.getRowEnd(taCorrect, offset);
-                        //System.out.println( "Row start offset: " + rowStart );
-                        //System.out.println( "Row end   offset: " + rowEnd );
                         taCorrect.select(rowStart, rowEnd);
-                        //TODO
-                        // Add the words instead of hello
-                        // Append to textarea
-                        System.out.println("The word :" + word1);
-                        System.out.println(startNewWord);
-                        System.out.println(endNewWord);
                         ta.replaceRange(word1, startNewWord, endNewWord);
                         taCorrect.selectAll();
                         taCorrect.replaceSelection("");
-                        //ta.replaceRange(word1, startNewWord, endNewWord);
-                        //ta.insert(word, startNewWord);
-                        //taCorrect.selectAll();
-                        //taCorrect.replaceSelection("");
                     } catch (Exception e2) {
                     }
                 }
@@ -183,18 +153,20 @@ public class GUI extends JFrame implements EventListener, ActionListener {
                 );
                 int row = root.getElementIndex(caretPosition);
                 int column = caretPosition - root.getElement(row).getStartOffset();
-                //System.out.println( "Row   : " + ( row + 1 ) );
-                //System.out.println( "Column: " + ( column + 1 ) );
             }
         });
 
         taCorrect.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                //System.out.println( ta.getDocument().getDefaultRootElement().getElementCount() );
             }
         });
     }
 
+
+    //Méthode pour charger un fichier
+    //Produit une ArrayList de tout les mots dans le fichier
+    //2 chemins possibles: Soit une entrée pour créer une ArrayList pour les mots du texte, et une entrée
+    //pour les mots du dictionnaire.
     public <ArrayList> java.util.ArrayList<String> chargerFichier(char discrim) {
         if (discrim == 't') {
             int val = this.fc.showOpenDialog(this);
@@ -237,6 +209,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
     }
 
+    //Méthode pour sauvegarder un texte.
     public void ecrireFichier() {
         int val = this.fc.showOpenDialog(this);
 
@@ -252,6 +225,7 @@ public class GUI extends JFrame implements EventListener, ActionListener {
 
     }
 
+    //Methode pour afficher du texte, notamment lorsqu'on importe du texte
     public void afficher(ArrayList<String> t) {
         if (t != null) {
             Iterator var1 = t.iterator();
@@ -263,35 +237,30 @@ public class GUI extends JFrame implements EventListener, ActionListener {
         }
     }
 
+    //Méthode qui active les multiples actions suite au clique d'un des 4 boutons
     public void actionPerformed(ActionEvent e) {
+        //Clique sur le bouton choisir
         if (e.getSource() == this.chooser) {
-            //texte = this.vectorize(chargerFichier('c'), 'n');
             texte = chargerFichier('t');
-            //texte = dico.vectorize(texte);
-            //System.out.println(texte.toString());
-            System.out.println(texte.toString());
             ta.selectAll();
             ta.replaceSelection("");
             this.afficher(texte);
         }
 
+        //Clique sur le bouton dictionnaire
         if (e.getSource() == this.dictionnaire) {
-            //texteDico = this.vectorize(chargerFichier('n'), 'n');
             texteDico.clear();
             texteDico = chargerFichier('n');
-            System.out.println(texteDico.toString());
             dico.readDico(texteDico);
         }
 
+        //Sauvegarder un fichier
         if (e.getSource() == this.ecrire) {
             this.ecrireFichier();
         }
 
+        //Lancer une vérification
         if (e.getSource() == this.verif) {
-
-            System.out.println("");
-            System.out.println("New Verification");
-            //Corrector corr = new Corrector(ta.getText(), ta);
             try {
                 corr.highlightTextArea(ta.getText(), ta);
             } catch (IOException ex) {

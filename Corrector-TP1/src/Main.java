@@ -22,10 +22,10 @@ Pour les textarea:
     - Le deuxième textarea sert à proposer les 5 mots les plus proche.
 
 Déroulement du programme:
-Lorsque l'utilisateur rentre un dictionnaire, écrit ou importe du texte et appuit sur vérifier,
+Lorsque l'utilisateur rentre un dictionnaire, écrit ou importe du texte, et appuit sur vérifier,
 les mots qui ne se retrouvent pas dans le dictionnaire sont surlignés en rouge. On peut visualiser les mots
 similaires en cliquant à droite sur la souris. On peut ensuite seléctionner un mot proposé
-en cliquant à gauche sur la souris, ce qui le placera dans le texte dans la boîte ci-haut.
+en cliquant à gauche sur la souris, ce qui placera le mot choisit dans le texte.
 
 
 Survol structurel:
@@ -34,12 +34,11 @@ Ce programme contient 3 classes:
         Inclut une méthode qui va lancer les processus plus précis de traitement de texte
     - Dico: Produit une structure interne du dictionnaire. Cette classe inclut des méthodes de nettoyage de texte,
         de vectorisation, de recherche des mots les plus proches.
-    - Corrector: Corrige les mots et se charge de produire les données à ajouter à l'interface
-
+    - Corrector: Corrige les mots et se charge de produire les données à ajouter à l'interface. Inclut également les
+        méthodes nécéssairse pour surligner le texte.
+    -
 
 */
-
-
 
 public class Main {
     public static void main(String[] args) {

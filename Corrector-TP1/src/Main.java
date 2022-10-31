@@ -1,8 +1,8 @@
 /*
 TP1: Correcteur
 Fait par:
-    -   Kamen Damov
-    -   Ibrahim Melzi
+    -   Kamen Damov 20102811
+    -   Ibrahim Melzi 20066033
 Derniere mise a jour: 29 octobre 2022
 
 --------------------------------------
@@ -36,12 +36,11 @@ Ce programme contient 3 classes:
     - Corrector: Corrige les mots et se charge de produire les données à ajouter à l'interface. Inclut également les
         méthodes nécéssairse pour surligner le texte.
 
-
 */
 
 public class Main {
     public static void main(String[] args) {
-        //Paritr le programme
+        //Partir le programme
         gui.GUI g = new gui.GUI();
     }
 }
